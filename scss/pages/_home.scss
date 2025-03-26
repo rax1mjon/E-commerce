@@ -1,0 +1,458 @@
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as var;
+@use "../components/buttons" as btn;
+@use "../layout/flex" as flex;
+@use "../themes/dark--mode";
+
+.hero {
+  margin-top: 87px;
+  background: url("../images/home/heroBg.png") no-repeat;
+  background-size: cover;
+  @media (max-width: 565px) {
+    margin-top: 72px;
+  }
+  &--wrapper {
+    @include flex.flex(no, center, no, 10);
+    @media (max-width: 707px) {
+      padding: 27px 0;
+      justify-content: center;
+    }
+    img {
+      max-width: 303px;
+      width: 100%;
+      @media (max-width: 707px) {
+        display: none;
+      }
+    }
+    h3 {
+      @include mix.text(var.$bg-41, 48, 700, 150%);
+      font-size: clamp(18px, 5vw, 48px);
+    }
+  }
+}
+
+.stock {
+  &--wrapper {
+    @include flex.flex(column, no, no, 40);
+  }
+  &--head {
+    @include flex.flex(no, center, space-between, 20);
+
+    h2 {
+      @include mix.text(var.$bg-41, 36, 7, 150%);
+      font-size: clamp(18px, 7vw, 36px);
+    }
+    a {
+      position: relative;
+      @include mix.text(var.$bg-60, 16, 4, 150%);
+      @include btn.btn(8px 40px 8px 8, 4, 1px solid transparent, null);
+      transition: 0.4s;
+      &:hover {
+        border-color: var.$bg-8f;
+        &::after {
+          transform: translateX(5px);
+        }
+      }
+      &:active {
+        transform: scale(1);
+        &::after {
+          transform: translateX(0px);
+        }
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url("../images/home/sectionLinkRight.svg") no-repeat;
+        background-size: cover;
+        transition: 0.8s;
+      }
+    }
+  }
+  &--card {
+    &s {
+      display: flex;
+
+      gap: 40px;
+      overflow: auto;
+
+      @media (max-width: 1200px) {
+        transform: scale(1.03) translateX(20px);
+      }
+    }
+    position: relative;
+    @include btn.btn(null, 4, null, var.$bg-ff);
+    box-shadow: 1px 2px 4px 0px #0000001a;
+    transition: 0.5s;
+    display: block;
+    width: (272 * 2) + px;
+
+    &:hover {
+      box-shadow: 4px 8px 16px 0px #ff663333;
+
+      img[alt="Акции Товар"] {
+        transform: scale(1.05);
+      }
+
+      .like {
+        z-index: 1;
+        opacity: 1;
+      }
+
+      .stock--card_img {
+        span {
+          z-index: 1;
+          opacity: 1;
+        }
+      }
+
+      .stock--card_body__starts {
+        img {
+          filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+            brightness(102%) contrast(105%);
+        }
+      }
+    }
+
+    .like {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: -1;
+      background-color: #f3f2f170;
+      padding: 4px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: 0.5s;
+      .con-like {
+        --red: rgb(255, 50, 50);
+        position: relative;
+        width: 24px;
+        height: 24px;
+      }
+
+      .con-like .like {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 20;
+        cursor: pointer;
+      }
+
+      .con-like .checkmark {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .con-like .outline {
+        position: absolute;
+        fill: var.$bg-41;
+      }
+
+      .con-like .filled {
+        position: absolute;
+        fill: var(--red);
+      }
+
+      .con-like .filled {
+        animation: kfr-filled 0.5s;
+        display: none;
+      }
+
+      .con-like .celebrate {
+        position: absolute;
+        animation: kfr-celebrate 0.5s;
+        animation-fill-mode: forwards;
+        display: none;
+      }
+
+      .con-like .poly {
+        stroke: var(--red);
+        fill: var(--red);
+      }
+
+      .con-like .like:checked ~ .checkmark .filled {
+        display: block;
+      }
+
+      .con-like .like:checked ~ .checkmark .celebrate {
+        display: block;
+      }
+
+      @keyframes kfr-filled {
+        0% {
+          opacity: 0;
+          transform: scale(0);
+        }
+
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      @keyframes kfr-celebrate {
+        0% {
+          transform: scale(0);
+        }
+
+        50% {
+          opacity: 0.8;
+        }
+
+        100% {
+          transform: scale(1.2);
+          opacity: 0;
+          display: none;
+        }
+      }
+    }
+
+    &_img {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      img {
+        height: 100%;
+        object-fit: cover;
+        transition: 0.3s;
+      }
+      span {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        z-index: -1;
+        opacity: 0;
+        @include btn.btn(3px 8, 4, null, var.$bg-f6);
+        @include mix.text(var.$bg-ff, 12, 4, 150%);
+        transition: 0.5s;
+      }
+    }
+
+    &_body {
+      @include flex.flex(column, no, no, 8);
+      padding: 8px;
+      &__cost {
+        @include flex.flex(no, center, space-between, 8);
+        div {
+          @include flex.flex(column);
+          span {
+            &:nth-child(1) {
+              @include mix.text(var.$bg-41, 18, 7, 150%);
+            }
+            &:nth-child(2) {
+              @include mix.text(var.$bg-bf, 12, 4, 150%);
+            }
+          }
+          &:nth-child(2) {
+            span:nth-child(1) {
+              font-size: 16px;
+              font-weight: 400;
+              color: var.$bg-60;
+            }
+          }
+        }
+      }
+
+      p {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        @include mix.text(var.$bg-41, 16, 4, 150%);
+      }
+      &__starts {
+        img {
+          transition: 0.5s;
+        }
+        img:nth-child(-n + 3) {
+          filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+            brightness(102%) contrast(105%);
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      @include btn.btn(8, 4, 1px solid var.$bg-70, null);
+      @include mix.text(var.$bg-70, 16, 4, 150%, center);
+      &:hover {
+        background-color: var.$bg-f6;
+        border-color: var.$bg-f6;
+        color: var.$bg-ff;
+      }
+    }
+  }
+}
+
+.new {
+  .stock--card_body__cost {
+    padding-bottom: 18px;
+  }
+}
+
+.Bought {
+  h2 {
+    @media (max-width: 545px) {
+      font-size: 25px;
+    }
+    @media (max-width: 440px) {
+      font-size: 20px;
+    }
+  }
+}
+
+.offer {
+  &--wrapper {
+    @include flex.flex(column, no, no, 40);
+    ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      @media (max-width: 750px) {
+        grid-template-columns: 1fr;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 40px;
+        background-color: var.$bg-fc;
+        overflow: hidden;
+        box-shadow: 0px 8px 16px 0px #ca936080;
+
+        @media (max-width: 450px) {
+          padding: 20px;
+          img {
+            display: none;
+          }
+        }
+        &:nth-child(2) {
+          background: url("../images/home/banner.svg") no-repeat;
+          background-size: cover;
+          // gap: 30px
+          img {
+            margin: 14px 32px 0 10px;
+          }
+        }
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          width: 258px;
+          p {
+            white-space: normal;
+          }
+        }
+      }
+    }
+  }
+}
+
+.shop {
+  &-tap {
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .ap-tab {
+    &-list {
+      display: flex;
+      gap: 16px;
+      overflow: auto;
+    }
+
+    &-item {
+      padding: 4px 0;
+      a {
+        padding: 4px 8px;
+        @include mix.text(var.$bg-60, 12, 4, 150%, center);
+        background-color: var.$bg-f3;
+        border-radius: 4px;
+        transition: 0.4s;
+        &:hover {
+          background-color: var.$bg-70;
+          color: #fff;
+        }
+      }
+    }
+
+    &-content {
+      width: 100%;
+      iframe {
+        width: 100%;
+        height: 354px;
+      }
+    }
+  }
+}
+
+.article {
+  .stock {
+    &--card {
+      padding-bottom: 60px;
+      &s {
+        overflow: visible;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        transform: scale(1);
+        @media (max-width: 900px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 550px) {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      width: auto;
+
+      &_img {
+        width: 100%;
+        height: (162 * 1) + px;
+        img {
+          width: 100%;
+        }
+      }
+
+      &_body {
+        p {
+          display: block;
+          height: 96px;
+        }
+        &__cost {
+          @include mix.text(var.$bg-8f, 12, 4, 150%);
+        }
+
+        h3 {
+          @include mix.text(var.$bg-41, 18, 7, 150%);
+        }
+      }
+
+      a {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 150px;
+        background-color: #e5ffde;
+
+        @include btn.btn(8, 4, 1px solid var.$bg-70, null);
+        @include mix.text(var.$bg-70, 16, 4, 150%, center);
+        &:hover {
+          background-color: var.$bg-70;
+          color: var.$bg-ff;
+        }
+      }
+    }
+  }
+}

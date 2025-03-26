@@ -1,0 +1,141 @@
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as var;
+@use "../components/buttons" as btn;
+@use "../layout/grid" as grid;
+@use "../layout/forms" as form;
+@use "../layout/flex" as flex;
+@use "../components/dropdown" as drop;
+@use "../themes/dark--mode";
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var.$bg-ff;
+  padding: 1rem 0;
+  box-shadow: 2px 4px 8px 0px var.$bg-shadow;
+  z-index: 111112;
+
+  &--bd {
+    @include flex.flex(no, center, space-between, 10);
+  }
+
+  &--md {
+    display: none !important;
+    gap: 20px;
+    justify-content: space-between;
+    &__menu {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 565px) {
+    &--bd {
+      display: none;
+    }
+    &--md {
+      display: flex !important;
+    }
+  }
+
+  &--brand {
+    a {
+      @include flex.flex(no, center, space-between, 11);
+      span {
+        @include mix.text(var.$bg-41, 18, 7, 100%);
+        @media (max-width: 770px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  form {
+    position: relative;
+    max-width: 374px;
+    width: 100%;
+  }
+
+  label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    height: 24px;
+  }
+
+  input {
+    outline: none;
+    @include btn.btn(8px 16, 4, 1px solid var.$bg-70, no);
+    height: 40px;
+    width: 100%;
+    @include mix.text(var.$bg-41, 16, 4, 150%);
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+    &:focus {
+      box-shadow: 3px 3px 5px 1px var.$bg-70;
+    }
+    &::placeholder {
+      @include mix.text(var.$bg-8f, 16, 4, 150%);
+    }
+  }
+
+  &--menu {
+    &Link {
+      @include btn.btn(8, 4, null, var.$bg-70);
+      @include flex.flex(no, center, no, 8);
+      &:hover {
+        background-color: var.$bg-f6;
+      }
+      &::before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        background: url("../images/components/menu.svg") no-repeat;
+        background-size: cover;
+      }
+      span {
+        @include mix.text(var.$bg-ff, 16, 4, 150%, center);
+        @media (max-width: 920px) {
+          display: none;
+        }
+      }
+    }
+    @include flex.flex(no, center, space-between, 24);
+    background-color: var.$bg-ff;
+    a {
+      @include flex.flex(column, center, no, 8);
+      text-decoration: none;
+      span {
+        @include mix.text(var.$bg-41, 12, 4, 150%);
+      }
+      svg {
+        fill: var.$bg-41;
+      }
+      &:hover {
+        span {
+          color: var.$bg-f6;
+        }
+        svg {
+          fill: var.$bg-f6;
+        }
+      }
+    }
+    &__me {
+      @include flex.flex(no, center, no, 10);
+      span {
+        padding-right: 66px;
+        @include mix.text(var.$bg-23, 16, 4, 150%);
+        @media (max-width: 920px) {
+          display: none;
+        }
+      }
+    }
+  }
+}

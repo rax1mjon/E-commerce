@@ -1,0 +1,84 @@
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as var;
+@use "../components/buttons" as btn;
+@use "../layout/grid" as grid;
+@use "../layout/forms" as form;
+@use "../layout/flex" as flex;
+@use "../components/dropdown" as drop;
+@use "../themes/dark--mode";
+
+.footer {
+  padding: 24px 0 100px;
+  background: url("../images/components/footerBg.png") no-repeat var.$bg-f9;
+  background-size: cover;
+  &--wrapper {
+    @include flex.flex(no, center, space-between, 15);
+    @media (max-width: 765px) {
+      flex-wrap: wrap;
+    }
+  }
+  nav {
+    max-width: 635px;
+    width: 100%;
+    @media (max-width: 765px) {
+      order: 1;
+    }
+    ul {
+      @include flex.flex(no, center, space-between, 10);
+      width: 100%;
+      flex-wrap: wrap;
+      a,
+      p {
+        @include mix.text(var.$bg-41, 12, 4, 150%);
+      }
+      li {
+        position: relative;
+        padding-bottom: 5px;
+      }
+      a {
+        text-decoration: none;
+
+        &:hover {
+          &::before {
+            width: 100%;
+            left: 0;
+          }
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background-color: var.$bg-70;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+  &--social {
+    @include flex.flex(no, center, space-between, 5);
+    width: 100%;
+    max-width: 336px;
+    @media (max-width: 765px) {
+      flex-direction: column;
+      width: auto;
+    }
+    ul {
+      @include flex.flex(no, center, no, 16);
+    }
+    [href="tel:8 800 777 33 33"] {
+      @include flex.flex(no, center, space-between, 8);
+      @include mix.text(var.$bg-41, 16, 4, 150%);
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url("../images/components/phone.svg") no-repeat center;
+        background-size: cover;
+      }
+    }
+  }
+}
