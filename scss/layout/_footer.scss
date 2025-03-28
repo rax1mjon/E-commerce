@@ -30,6 +30,7 @@
       a,
       p {
         @include mix.text(var.$bg-41, 12, 4, 150%);
+        white-space: nowrap;
       }
       li {
         position: relative;

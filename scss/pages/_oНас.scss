@@ -1,0 +1,66 @@
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as var;
+@use "../components/buttons" as btn;
+@use "../layout/flex" as flex;
+@use "../themes/dark--mode";
+
+.about {
+  &--wrapper {
+    @include flex.flex(column, flex-start, space-between, 120);
+  }
+
+  &--top {
+    @include flex.flex(no, flex-start, space-between);
+    background-image: url("../images/ОНас/about-top_bigBg.png"),
+      url("../images/ОНас/about-top_bg.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, auto;
+    background-position: center, bottom right;
+    min-height: 372px;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+    &_img {
+      max-width: 620px;
+      width: 100%;
+      align-self: end;
+      img {
+        width: clamp(300px, 50vw, 620px);
+        object-fit: cover;
+      }
+      @media (max-width: 900px) {
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    &__main {
+      h2 {
+        @include mix.text(var.$bg-41, null, 7, 150%);
+        margin-bottom: 16px;
+        font-size: clamp(36px, 4vw, 64px);
+      }
+      p {
+        @include mix.text(var.$bg-f6, null, 7, 150%);
+        font-size: clamp(14px, 4vw, 24px);
+      }
+    }
+  }
+
+  &--middle {
+    @include flex.flex(no, no, space-between, 10);
+    li {
+      padding-left: 40px;
+      p {
+        @include mix.text(var.$bg-41, 20, 4, 150%);
+      }
+      h3 {
+        margin-top: 16px;
+        @include mix.text(var.$bg-41, 24, 7, 150%);
+      }
+    }
+  }
+}

@@ -39,12 +39,44 @@ a {
   padding: 0 $padding + px;
 }
 
-p,
 a {
   white-space: nowrap;
 }
 
 main {
-  padding: 120px 0;
+  margin: 120px 0;
   @include flex.flex(column, no, center, 120);
+}
+.main_about {
+  gap: 20px;
+}
+
+.flex {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+nav[aria-label="Breadcrumb"] {
+  ol {
+    @extend .flex;
+    a,
+    li {
+      @include mix.text(var.$bg-8f, 12, 4, 150%);
+    }
+    a {
+      @extend .flex;
+
+      color: var.$bg-41;
+      &::after {
+        content: "";
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        background: url("../../images/home/sectionLinkRight.svg") no-repeat
+          center;
+        background-size: cover;
+      }
+    }
+  }
 }
