@@ -1,5 +1,11 @@
-let navMenu = document.getElementById("nav-menu");
+let navMenu = document.getElementById("category__menus");
 let hamburger = document.getElementById("header__menuLink");
-navMenu.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
+let hamburgerIcon = document.getElementById("header__menuLink-md");
+
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("active");
+});
+
+hamburgerIcon.addEventListener("click", () => {
+  navMenu.classList.toggle("active");
 });

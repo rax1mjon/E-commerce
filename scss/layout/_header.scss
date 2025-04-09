@@ -9,12 +9,12 @@
 
 .header {
   position: fixed;
-  top: 0;
+  top: -5px;
   width: 100%;
   background-color: var.$bg-ff;
   padding: 1rem 0;
   box-shadow: 2px 4px 8px 0px var.$bg-shadow;
-  z-index: 111112;
+  z-index: 11111112;
 
   &--bd {
     @include flex.flex(no, center, space-between, 10);
@@ -145,7 +145,49 @@
     position: fixed;
     top: 72px;
     width: 100%;
-    border: 1px solid #000;
+    padding: 40px 20px;
     background-color: var.$bg-ff;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+    gap: 20px 40px;
+    display: grid;
+    box-shadow: 0px 8px 16px 0px #00000026;
+    transform: translateY(-100%);
+    z-index: 11111111;
+    transition: 0.5s;
+    @media (max-width: 910px) {
+      grid-template: repeat(5, 1fr) / repeat(3, 1fr);
+    }
+    @media (max-width: 670px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 565px) {
+      top: auto;
+      bottom: 94px;
+      transform: translateY(100%);
+      height: calc(90vh - 250px);
+      grid-template: repeat(7, 1fr) / repeat(2, 1fr);
+      box-shadow: 15px 0px 16px 0px #00000026;
+      overflow: auto;
+      gap: 20px;
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    &.active {
+      transform: translateY(0);
+    }
+  }
+
+  &--menu {
+    height: 24px;
+    a {
+      @include mix.text(var.$bg-41, 16, 7, 150%);
+      &:hover {
+        color: var.$bg-f6;
+      }
+    }
   }
 }
