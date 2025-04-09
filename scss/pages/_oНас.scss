@@ -52,14 +52,78 @@
 
   &--middle {
     @include flex.flex(no, no, space-between, 10);
+
+    @media (max-width: 1065px) {
+      flex-wrap: wrap;
+    }
+
     li {
+      position: relative;
       padding-left: 40px;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        background: url("../images/ОНас/check.svg") no-repeat center;
+        background-size: cover;
+      }
+
+      &:nth-child(1) {
+        flex-shrink: 1;
+      }
+
+      &:nth-child(2) {
+        flex-shrink: 6;
+      }
+      &:nth-child(3) {
+        flex-shrink: 5;
+      }
+
       p {
         @include mix.text(var.$bg-41, 20, 4, 150%);
       }
+
       h3 {
         margin-top: 16px;
         @include mix.text(var.$bg-41, 24, 7, 150%);
+      }
+    }
+  }
+}
+
+.massage {
+  &--wrapper {
+    @include flex.flex(no, center, center, 72);
+    padding: 80px 50px 0;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      padding: 80px 20px 0;
+    }
+    div {
+      @include btn.btn(20px 40, 8, null, var.$bg-e5);
+      @include mix.text(var.$bg-70, no, 7, 150%);
+      font-size: clamp(12px, 3vw, 24px);
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 1px;
+        transform: translate(-100%, -50%);
+        width: 40px;
+        height: 40px;
+        clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+        background-color: var.$bg-e5;
+        border-radius: 4px;
+
+        @media (max-width: 600px) {
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -100%) rotate(90deg);
+        }
       }
     }
   }
