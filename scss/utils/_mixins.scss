@@ -1,5 +1,3 @@
-
-
 @mixin pos($pos, $top: no, $right: no, $bottom: no, $left: no) {
   position: $pos;
   @if $top != no {
@@ -42,9 +40,11 @@
 
 @mixin text($color, $size, $weight, $line, $align: no) {
   color: $color;
-  font-size: $size + px;
+  @if $size != no {
+    font-size: $size + px;
+  }
   font-weight: $weight * 100;
-  line-height: $line ;
+  line-height: $line;
   @if $align != no {
     text-align: $align;
   }

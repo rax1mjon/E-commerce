@@ -43,6 +43,11 @@ a {
   white-space: nowrap;
 }
 
+img {
+  object-fit: cover;
+  object-position: center;
+}
+
 main {
   margin: 120px 0;
   @include flex.flex(column, no, center, 120);
