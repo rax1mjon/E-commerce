@@ -11,6 +11,7 @@
   padding: 24px 0 100px;
   background: url("../images/components/footerBg.png") no-repeat var.$bg-f9;
   background-size: cover;
+  border-radius: 20px 20px 0 0;
   &--wrapper {
     @include flex.flex(no, center, space-between, 15);
     @media (max-width: 765px) {

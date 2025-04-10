@@ -6,8 +6,20 @@
 
 .hero {
   margin-top: 87px;
-  background: url("../images/home/heroBg.png") no-repeat;
-  background-size: cover;
+  .container {
+    background: url("../images/home/heroBg.png") no-repeat var.$bg-fb;
+    background-size: cover;
+    animation: bgMove 15s infinite alternate linear;
+    padding: 20px;
+    @keyframes bgMove {
+      from {
+        background-position: right bottom;
+      }
+      to {
+        background-position: left top;
+      }
+    }
+  }
   @media (max-width: 565px) {
     margin-top: 72px;
   }
@@ -81,7 +93,7 @@
       overflow: auto;
 
       @media (max-width: 1200px) {
-        transform: scale(1.03) translateX(20px);
+        transform: scale(1.03) translateX(0);
       }
     }
     position: relative;
@@ -262,7 +274,6 @@
           }
         }
       }
-
       p {
         display: -webkit-box;
         -webkit-line-clamp: 2;

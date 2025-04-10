@@ -10,11 +10,17 @@
 .header {
   position: fixed;
   top: -5px;
+  left: 0;
   width: 100%;
   background-color: var.$bg-ff;
   padding: 1rem 0;
   box-shadow: 2px 4px 8px 0px var.$bg-shadow;
   z-index: 11111112;
+
+  .container {
+    padding: 0 20px;
+    background-color: transparent;
+  }
 
   &--bd {
     @include flex.flex(no, center, space-between, 10);
@@ -144,6 +150,7 @@
   &--menus {
     position: fixed;
     top: 72px;
+    left: 0;
     width: 100%;
     padding: 40px 20px;
     background-color: var.$bg-ff;

@@ -15,7 +15,13 @@ html,
 body {
   font-family: "Rubik", sans-serif;
   scroll-behavior: smooth;
-  background-color: var.$bg-fb;
+}
+
+body {
+  background: url("https://images.fooby.ru/2/23/35/6117345") no-repeat fixed
+    center;
+  background-size: cover;
+  padding: 0 20px;
 }
 
 li,
@@ -36,7 +42,9 @@ a {
   $padding: 20;
   max-width: func.container(1440, 116, $padding);
   margin: 0 auto;
-  padding: 0 $padding + px;
+  padding: $padding + 20 + px;
+  background-color: var.$bg-fb;
+  border-radius: 20px;
 }
 
 a {
@@ -49,8 +57,8 @@ img {
 }
 
 main {
-  margin: 120px 0;
-  @include flex.flex(column, no, center, 120);
+  margin: 100px 0;
+  @include flex.flex(column, no, center, 60);
 }
 .main_about {
   gap: 20px;
@@ -63,6 +71,10 @@ main {
 }
 
 nav[aria-label="Breadcrumb"] {
+  .container {
+    padding: 20px;
+    overflow: auto;
+  }
   ol {
     @extend .flex;
     a,
