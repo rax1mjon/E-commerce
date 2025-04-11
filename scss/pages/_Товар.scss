@@ -3,3 +3,291 @@
 @use "../components/buttons" as btn;
 @use "../layout/flex" as flex;
 @use "../themes/dark--mode";
+
+.dairy {
+  &--wrapper {
+    @include flex.flex(column, no, no, 16);
+    h2 {
+      @include mix.text(var.$bg-41, no, 7, 150%);
+      font-size: clamp(18px, 4vw, 24px);
+    }
+  }
+
+  &--middle {
+    @include flex.flex(no, center, no, 24);
+    flex-wrap: wrap;
+    &_id {
+      @include mix.text(var.$bg-41, 12, 4, 150%);
+    }
+
+    &_Comment {
+      @include flex.flex(no, center, no, 8);
+
+      .starts {
+        img:nth-child(-n + 2) {
+          filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+            brightness(102%) contrast(105%);
+        }
+
+        img:hover {
+          filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+            brightness(102%) contrast(105%);
+        }
+      }
+
+      a {
+        @include mix.text(var.$bg-41, 12, 4, 150%);
+        &:hover {
+          color: var.$bg-f6;
+        }
+      }
+    }
+
+    &_share {
+      @include mix.text(var.$bg-60, 12, 4, 150%);
+      @include flex.flex(no, center, no, 8);
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url("../images/Товар/share-2.svg") no-repeat center;
+        background-size: cover;
+        margin-right: 8px;
+      }
+    }
+
+    &_like {
+      @include mix.text(var.$bg-60, 12, 4, 150%);
+      @include flex.flex(no, center, no, 8);
+    }
+  }
+
+  &--body {
+    display: grid;
+    grid-template-columns: 3fr 2fr 1fr;
+    gap: 30px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 705px) {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    &_imagesMenu {
+      @include flex.flex(no, no, no, 16);
+
+      @media (max-width: 570px) {
+        flex-direction: column-reverse;
+      }
+    }
+
+    &__minImages {
+      @include flex.flex(column, no, space-between, 16);
+      @media (max-width: 570px) {
+        flex-direction: row;
+      }
+      li {
+        max-width: 64px;
+        img {
+          width: 100%;
+          height: 100%;
+          box-shadow: 1px 2px 4px 0px #0000001a;
+        }
+      }
+    }
+
+    &__bigImage {
+      max-width: 504px;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__info {
+      @include flex.flex(column, no, no, 24);
+
+      &Top {
+        @include flex.flex(no, flex-end, space-between, 16);
+
+        div {
+          h2 {
+            @include mix.text(var.$bg-41, no, 7, 150%);
+            font-size: clamp(24px, 4vw, 36px);
+          }
+          &:nth-child(1) {
+            h2 {
+              @include mix.text(var.$bg-60, no, 4, 150%);
+              font-size: clamp(18px, 4vw, 24px);
+            }
+          }
+          &:nth-child(2) {
+            span {
+              @include flex.flex(no, center, no, 8);
+              &::after {
+                content: "";
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+                background: url("../images/Товар/info.svg") no-repeat center;
+                background-size: cover;
+              }
+            }
+          }
+          span {
+            @include mix.text(var.$bg-bf, 12, 4, 150%);
+          }
+        }
+      }
+
+      &Middle {
+        @include flex.flex(column, center, no, 8);
+        a {
+          &[href="./Корзина.html"] {
+            position: relative;
+            @include btn.btn(16px 16px 16px 56, 4, null, var.$bg-f6);
+            width: 100%;
+            @include mix.text(var.$bg-ff, 24, 4, 150%, center);
+            transition: 0.5s;
+            &:hover {
+              box-shadow: inset 200px 40px 5px 50px var.$bg-70;
+              transform: scale(1) skew(10deg, 0deg);
+            }
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 16px;
+              left: 16px;
+              display: inline-block;
+              width: 32px;
+              height: 32px;
+              background: url("../images/Товар/shopping-cart.svg") no-repeat
+                center;
+              background-size: cover;
+              margin-right: 8px;
+            }
+          }
+        }
+
+        .prize,
+        .quiteMode {
+          position: relative;
+          @include btn.btn(8px 8px 8px 48, 4, null, transparent);
+          @include mix.text(var.$bg-70, 12, 4, 150%, center);
+          transform: scale(1);
+          &::before {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: url("../images/Товар/smile.svg") no-repeat center;
+            background-size: cover;
+          }
+        }
+        .quiteMode {
+          color: var.$bg-60;
+          &::before {
+            background: url("../images/Товар/bell-off.svg") no-repeat center;
+          }
+        }
+      }
+
+      &Bottom {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        li {
+          padding: 4px 8px;
+          @include mix.text(var.$bg-41, 12, 7, 150%);
+        }
+
+        li:nth-child(odd) {
+          font-weight: 400;
+        }
+
+        @for $i from 1 through 6 {
+          @if ($i <= 2 and $i>=1 or $i <= 6 and $i>=5) {
+            li:nth-child(#{$i}) {
+              background-color: var.$bg-f3;
+            }
+          }
+        }
+      }
+    }
+
+    &__others {
+      @include flex.flex(column, no, no, 16);
+
+      @media (max-width: 1000px) {
+        grid-column: span 2;
+      }
+
+      @media (max-width: 705px) {
+        grid-column: auto;
+      }
+      h4 {
+        @include mix.text(var.$bg-60, 16, 4, 150%);
+      }
+      ul {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+
+        @media (max-width: 1000px) {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 705px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        li {
+          @include flex.flex(column, no, no, 8);
+          box-shadow: 1px 2px 4px 0px #0000001a;
+          border-radius: 4px;
+          background-color: var.$bg-ff;
+          img {
+            width: 100%;
+          }
+          span {
+            display: inline-block;
+            padding: 10px;
+            @include mix.text(var.$bg-41, 18, 7, 150%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.comment {
+  &--wrapper {
+    @include flex.flex(column, no, no, 16);
+    h2 {
+      @include mix.text(var.$bg-41, no, 7, 150%);
+      font-size: clamp(18px, 4vw, 24px);
+    }
+  }
+
+  &--body {
+    @include flex.flex(no, no, space-between, 50);
+    &__info {
+      @include flex.flex(column, no, no, 16);
+
+      &Top {
+        @include flex.flex(no, center, space-between, 16);
+      }
+    }
+
+    &__Comments {
+      width: 600px;
+    }
+  }
+}
