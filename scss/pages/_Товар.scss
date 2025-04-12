@@ -277,17 +277,236 @@
   }
 
   &--body {
-    @include flex.flex(no, no, space-between, 50);
+    @include flex.flex();
+    gap: clamp(50px, 6vw, 144px);
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+    }
     &__info {
       @include flex.flex(column, no, no, 16);
-
+      @media (max-width: 700px) {
+        padding: 0 20px;
+      }
       &Top {
         @include flex.flex(no, center, space-between, 16);
+
+        div {
+          @include flex.flex(no, center, no, 4);
+          img:nth-child(-n + 4) {
+            filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+              brightness(102%) contrast(105%);
+          }
+          img:hover {
+            filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+              brightness(102%) contrast(105%);
+          }
+        }
+
+        p {
+          @include mix.text(var.$bg-41, 18, 7, 150%);
+          white-space: nowrap;
+        }
+      }
+
+      &Bottom {
+        @include flex.flex(column, no, no, no);
+        li {
+          @include flex.flex(no, center, space-between, 16);
+          padding: 4px 4px;
+
+          span {
+            @include mix.text(var.$bg-41, 16, 4, 150%);
+          }
+
+          div {
+            @include flex.flex(no, center, no, 4);
+
+            img {
+              &:hover {
+                filter: invert(36%) sepia(84%) saturate(2781%)
+                  hue-rotate(-10deg) brightness(102%) contrast(105%);
+              }
+            }
+          }
+
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+              div {
+                img:nth-child(-n + #{6 - $i}) {
+                  filter: invert(36%)
+                    sepia(84%)
+                    saturate(2781%)
+                    hue-rotate(-10deg)
+                    brightness(102%)
+                    contrast(105%);
+                }
+              }
+            }
+          }
+        }
       }
     }
 
     &__Comments {
-      width: 600px;
+      @include flex.flex(column);
+      max-width: 688px;
+
+      li {
+        @include flex.flex(column, no, no, 16);
+        padding: 16px;
+        box-shadow: 1px 2px 4px 0px #0000001a;
+        border-radius: 4px;
+        background-color: var.$bg-f9;
+        position: relative;
+
+        p {
+          @include mix.text(var.$bg-41, 16, 4, 150%);
+        }
+      }
+
+      .title {
+        @include flex.flex(no, center, no, 8);
+        @include mix.text(var.$bg-41, 18, 4, 150%);
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          background: url("../images/Товар/avatar.svg") no-repeat center;
+          background-size: cover;
+          margin-right: 8px;
+        }
+      }
+
+      .stars {
+        @include flex.flex(no, center, no, 16);
+        div {
+          @include flex.flex(no, center, no, 4);
+        }
+      }
+
+      li:nth-child(1) {
+        img:nth-child(n) {
+          filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+            brightness(102%) contrast(105%);
+        }
+      }
+
+      li:nth-child(2) {
+        img:nth-child(-n + 4) {
+          filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+            brightness(102%) contrast(105%);
+        }
+      }
+
+      li:nth-child(3) {
+        img:nth-child(-n + 1) {
+          filter: invert(36%) sepia(84%) saturate(2781%) hue-rotate(-10deg)
+            brightness(102%) contrast(105%);
+        }
+      }
+    }
+  }
+
+  &--form {
+    margin-left: 22%;
+    @include flex.flex(column, flex-start, no, 16);
+    max-width: 688px;
+
+    &__start {
+      @include flex.flex(no, center, no, 16);
+      h3 {
+        @include mix.text(var.$bg-41, 18, 7, 150%);
+        // font-size: clamp(18px, 4vw, 24px);
+      }
+    }
+
+    textarea {
+      resize: none;
+      outline: none;
+      @include btn.btn(8px 16, 4, 1px solid var.$bg-bf, var.$bg-ff);
+      height: 100px;
+      width: 100%;
+      @include mix.text(var.$bg-41, 16, 4, 150%);
+
+      &::placeholder {
+        @include mix.text(var.$bg-41, 16, 4, 150%);
+      }
+
+      &:focus {
+        box-shadow: 3px 3px 5px 1px var.$bg-70;
+      }
+    }
+
+    button {
+      @include btn.btn(8, 4, none, var.$bg-fc);
+      width: auto;
+      @include mix.text(var.$bg-f6, 16, 4, 150%, center);
+      transition: 0.5s;
+      &:hover {
+        box-shadow: inset 200px 40px 5px 50px var.$bg-70;
+        transform: scale(1) skew(10deg, 0deg);
+        color: var.$bg-ff;
+      }
+    }
+  }
+
+  .radio {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: row-reverse;
+
+    & > input {
+      position: absolute;
+      appearance: none;
+    }
+
+    & > label {
+      cursor: pointer;
+      font-size: 30px;
+      position: relative;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    & > label > svg {
+      fill: #bfbfbf;
+      transition: fill 0.3s ease;
+    }
+
+    & > label:hover {
+      transform: scale(1.2);
+      animation: pulse 0.6s infinite alternate;
+    }
+
+    & > label:hover > svg,
+    & > label:hover ~ label > svg {
+      fill: #ff9e0b;
+      filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+      animation: shimmer 1s ease infinite alternate;
+    }
+
+    & > input:checked + label > svg,
+    & > input:checked + label ~ label > svg {
+      fill: #ff9e0b;
+      filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+      animation: pulse 0.8s infinite alternate;
+    }
+
+    & > label:hover > svg,
+    & > label:hover ~ label > svg {
+      fill: #ff9e0b;
+    }
+
+    & > input:checked + label:hover > svg,
+    & > input:checked + label:hover ~ label > svg {
+      fill: #e58e09;
+    }
+
+    & input:checked ~ label svg {
+      fill: #ffa723;
     }
   }
 }
