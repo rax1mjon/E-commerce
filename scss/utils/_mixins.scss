@@ -38,7 +38,7 @@
   height: $height;
 }
 
-@mixin text($color, $size, $weight, $line, $align: no) {
+@mixin text($color, $size: no, $weight, $line, $align: no) {
   color: $color;
   @if $size != no {
     font-size: $size + px;

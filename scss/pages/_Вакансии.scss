@@ -3,3 +3,71 @@
 @use "../components/buttons" as btn;
 @use "../layout/flex" as flex;
 @use "../themes/dark--mode";
+
+.vacancy {
+  &--wrapper {
+    @include flex.flex(column, no, no, 60);
+
+    h2 {
+      @include mix.text(var.$bg-41, no, 7, 150%);
+      font-size: clamp(20px, 10vw, 64px);
+    }
+  }
+
+  &--list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+
+    @media (max-width: 950px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 650px) {
+      grid-template-columns: 1fr;
+      margin: 0 15px;
+    }
+
+    li {
+      @include btn.btn(32, 4, no, var.$bg-ff);
+      @include flex.flex(column, no, no, 16);
+      box-shadow: 1px 2px 2px 0px #0000001a;
+      transition: 0.3s;
+
+      &:hover {
+        box-shadow: 1px 2px 2px 0px var.$bg-shadow;
+        transform: scale(1.01) translateY(-2px) rotate(0.5deg)
+          perspective(1000px);
+      }
+
+      h3 {
+        @include mix.text(var.$bg-41, 24, 7, 150%);
+      }
+
+      h4 {
+        @include mix.text(var.$bg-41, 18, 4, 150%);
+      }
+
+      p {
+        @include mix.text(var.$bg-41, 16, 4, 150%);
+      }
+
+      div {
+        @include flex.flex(column, no, no, 8);
+      }
+
+      a {
+        @include mix.text(var.$bg-41, 18, 4, 150%);
+        @include flex.flex(no, center, no, 8);
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          background: url("../images/components/phone.svg") no-repeat center;
+          background-size: cover;
+        }
+      }
+    }
+  }
+}

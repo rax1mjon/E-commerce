@@ -1,8 +1,10 @@
-@mixin btn($padding, $radius, $border, $bg-color) {
+@mixin btn($padding, $radius, $border: no, $bg-color) {
   display: inline-block;
   padding: $padding + px;
   border-radius: $radius + px;
-  border: $border;
+  @if ($border != no) {
+    border: $border;
+  }
   background: $bg-color;
   text-decoration: none;
 }
