@@ -3,3 +3,50 @@
 @use "../components/buttons" as btn;
 @use "../layout/flex" as flex;
 @use "../themes/dark--mode";
+
+.contact {
+  &--wrapper {
+    @include flex.flex(column, no, no, 40);
+
+    h2 {
+      @include mix.text(var.$bg-41, no, 7, 150%);
+      font-size: clamp(20px, 10vw, 64px);
+    }
+  }
+
+  &--box {
+    @include flex.flex(no, center, no, 80);
+
+    @media (max-width: 950px) {
+      flex-wrap: wrap;
+    }
+    div {
+      @include flex.flex(column, no, no, 8);
+      span {
+        @include flex.flex(no, center, no, 8);
+        @include mix.text(var.$bg-41, no, 4, 150%);
+        font-size: clamp(15px, 2vw, 24px);
+
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          background: url("../images/Контакты/home.svg");
+          transition: 0.3s;
+        }
+      }
+
+      &:nth-child(2) {
+        span::before {
+          background-image: url("../images/Контакты/percent.svg");
+        }
+      }
+
+      a {
+        @include mix.text(var.$bg-41, 24, 7, 150%);
+        padding-left: 38px;
+      }
+    }
+  }
+}

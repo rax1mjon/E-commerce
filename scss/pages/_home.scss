@@ -88,9 +88,13 @@
   &--card {
     &s {
       display: flex;
-
+      overflow-x: auto;
+      scrollbar-width: none;
       gap: 40px;
-      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none; 
+      }
 
       @media (max-width: 1200px) {
         transform: scale(1.03) translateX(0);
@@ -105,6 +109,8 @@
 
     &:hover {
       box-shadow: 4px 8px 16px 0px #ff663333;
+      transform: scale(1.01) translateY(-2px) rotate(0.5deg) skew(0deg, 0deg)
+        translateZ(0px) translate3d(0px, 0px, 0px);
 
       img[alt="Акции Товар"] {
         transform: scale(1.05);
@@ -294,7 +300,7 @@
       }
     }
 
-    a {
+    a[href="./pages/Корзина.html"] {
       text-decoration: none;
       @include btn.btn(8, 4, 1px solid var.$bg-70, null);
       @include mix.text(var.$bg-70, 16, 4, 150%, center);
