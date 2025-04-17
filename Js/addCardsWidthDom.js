@@ -73,10 +73,10 @@ function productCard(pro, stock) {
   let stockCardBody = document.createElement("div");
   stockCardBody.className = "stock--card_body";
 
-  if (stock === "stock") {
-    let stockCardBodyCost = document.createElement("div");
-    stockCardBodyCost.className = "stock--card_body__cost";
+  let stockCardBodyCost = document.createElement("div");
+  stockCardBodyCost.className = "stock--card_body__cost";
 
+  if (stock === "stock") {
     let stockCardBodyCostChildOne = document.createElement("div");
 
     let stockCardBodyCostChildOneSpanOne = document.createElement("span");
@@ -103,13 +103,20 @@ function productCard(pro, stock) {
     stockCardBodyCostChildTwo.append(stockCardBodyCostChildTwoSpanTwo);
 
     stockCardBodyCost.append(stockCardBodyCostChildTwo);
-    stockCardBody.append(stockCardBodyCost);
+    
   } else {
-    let stockCardBodyCost = document.createElement("span");
-    stockCardBodyCost.innerText = el.price + "₽";
-    stockCardBody.append(stockCardBodyCost);
+    let stockCardBodyCostSpan = document.createElement("span");
+    stockCardBodyCostSpan.innerText = el.price + "₽";
+    stockCardBodyCostSpan.style = `
+    color: #414141;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 150%;
+    `;
+    stockCardBodyCost.append(stockCardBodyCostSpan);
   }
 
+  stockCardBody.append(stockCardBodyCost);
   stockCardItem.append(stockCardBody);
 
   // text
