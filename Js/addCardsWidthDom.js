@@ -103,7 +103,6 @@ function productCard(pro, stock) {
     stockCardBodyCostChildTwo.append(stockCardBodyCostChildTwoSpanTwo);
 
     stockCardBodyCost.append(stockCardBodyCostChildTwo);
-    
   } else {
     let stockCardBodyCostSpan = document.createElement("span");
     stockCardBodyCostSpan.innerText = el.price + "₽";
@@ -184,7 +183,7 @@ for (let i = 0; i < 4; i++) {
   newCardList[0].append(productCard(proNew[i], "notStock"));
 }
 
-// Новинки
+// Покупали раньше
 
 let BoughtCardList = document.getElementsByClassName("stock--cards_Bought");
 
@@ -193,3 +192,81 @@ let proBought = products.filter((el) => el.category == "Dairy");
 for (let i = 0; i < 4; i++) {
   BoughtCardList[0].append(productCard(proBought[i], "notStock"));
 }
+
+// offer section
+
+let offerSection = document.getElementsByClassName("offer--cards");
+
+for (let el of offerSectionData) {
+  let offerSectionItem = document.createElement("li");
+
+  let offerSectionItemBox = document.createElement("div");
+
+  let offerSectionItemTitle = document.createElement("h3");
+  offerSectionItemTitle.innerText = el.title;
+
+  let offerSectionItemDescription = document.createElement("p");
+  offerSectionItemDescription.innerText = el.description;
+  offerSectionItemBox.append(offerSectionItemTitle);
+  offerSectionItemBox.append(offerSectionItemDescription);
+
+  let offerSectionItemImage = document.createElement("img");
+  offerSectionItemImage.src = el.image;
+  offerSectionItemImage.alt = "offer";
+
+  offerSectionItem.append(offerSectionItemBox);
+  offerSectionItem.append(offerSectionItemImage);
+
+  offerSection[0].append(offerSectionItem);
+}
+
+// article section
+
+let articleList = document.getElementsByClassName("article--cards");
+
+for (let el of articleData) {
+  let articleItem = document.createElement("li");
+  articleItem.className = "stock--card";
+
+  let articleItemBox = document.createElement("div");
+  articleItemBox.className = "stock--card_img";
+
+  let articleItemImage = document.createElement("img");
+  articleItemImage.src = el.image;
+  articleItemImage.alt = "article";
+
+  articleItemBox.append(articleItemImage);
+
+  let articleCardBody = document.createElement("div");
+  articleCardBody.className = "stock--card_body";
+
+  let articleCardBodyDate = document.createElement("span");
+  articleCardBodyDate.className = "stock--card_body__cost";
+  articleCardBodyDate.innerText = el.date;
+
+  articleCardBody.append(articleCardBodyDate);
+
+  let articleCardBodyTitle = document.createElement("h3");
+  articleCardBodyTitle.innerText = el.title;
+
+  articleCardBody.append(articleCardBodyTitle);
+
+  let articleCardBodyText = document.createElement("p");
+  articleCardBodyText.innerText = el.description;
+
+  articleCardBody.append(articleCardBodyText);
+
+  let articleCardBodyButton = document.createElement("a");
+  articleCardBodyButton.href = "./pages/Заказы.html";
+  articleCardBodyButton.innerText = "Подробнее";
+
+  articleCardBody.append(articleCardBodyButton);
+
+  articleItem.append(articleItemBox);
+
+  articleItem.append(articleCardBody);
+
+  articleList[0].append(articleItem);
+}
+
+console.log(articleData);
