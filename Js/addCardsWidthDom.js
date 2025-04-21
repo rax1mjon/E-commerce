@@ -2,7 +2,7 @@ let stockCardList = document.getElementsByClassName("stock--cards");
 
 // Акции
 
-let pro = products.filter((el) => el.discount > 0);
+let pro = products.filter((el) => el.discount > 0).slice(-4);
 
 function productCard(pro, stock) {
   let el = pro;
@@ -169,35 +169,35 @@ function productCard(pro, stock) {
   return stockCardItem;
 }
 
-for (let i = 0; i < 4; i++) {
-  stockCardList[0].append(productCard(pro[i], "stock"));
-}
+pro.map((el) => {
+  stockCardList[0].append(productCard(el, "stock"));
+});
 
 // Новинки
 
 let newCardList = document.getElementsByClassName("stock--cards_new");
 
-let proNew = products.filter((el) => el.category == "Dessert");
+let proNew = products.slice(-4);
 
-for (let i = 0; i < 4; i++) {
-  newCardList[0].append(productCard(proNew[i], "notStock"));
-}
+proNew.map((el) => {
+  newCardList[0].append(productCard(el, "notStock"));
+});
 
 // Покупали раньше
 
 let BoughtCardList = document.getElementsByClassName("stock--cards_Bought");
 
-let proBought = products.filter((el) => el.category == "Dairy");
+let proBought = products.toSorted((a, b) => b.rating - a.rating).slice(0, 4);
 
-for (let i = 0; i < 4; i++) {
-  BoughtCardList[0].append(productCard(proBought[i], "notStock"));
-}
+proBought.map((el) => {
+  BoughtCardList[0].append(productCard(el, "notStock"));
+});
 
 // offer section
 
 let offerSection = document.getElementsByClassName("offer--cards");
 
-for (let el of offerSectionData) {
+offerSectionData.map((el) => {
   let offerSectionItem = document.createElement("li");
 
   let offerSectionItemBox = document.createElement("div");
@@ -218,13 +218,13 @@ for (let el of offerSectionData) {
   offerSectionItem.append(offerSectionItemImage);
 
   offerSection[0].append(offerSectionItem);
-}
+});
 
 // article section
 
 let articleList = document.getElementsByClassName("article--cards");
 
-for (let el of articleData) {
+articleData.map((el) => {
   let articleItem = document.createElement("li");
   articleItem.className = "stock--card";
 
@@ -267,6 +267,4 @@ for (let el of articleData) {
   articleItem.append(articleCardBody);
 
   articleList[0].append(articleItem);
-}
-
-console.log(articleData);
+});
