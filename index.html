@@ -11,7 +11,7 @@
 
 <body>
 
-  <!--|| loading DOM ||-->
+  <!-- || loading DOM ||-->
 
   <div class="loadingOwn">
     <div id="container">
@@ -28,13 +28,13 @@
   <!-- || loading Images || -->
   <div class="loadingImg">
     <div class="loader"></div>
-
   </div>
 
   <!--|| header ||-->
 
   <header class="header">
     <nav>
+
       <div class=" container header--bd">
         <div class="header--brand">
           <a href="./index.html">
@@ -51,7 +51,10 @@
             <span class="header--brand_span">Северяночка</span>
           </a>
         </div>
-        <a href="./pages/Категории.html" class="header--menuLink"><span>Каталог</span></a>
+        <div class="header--menuLink">
+          <img src="./images/components/menu.svg" alt="Каталог ">
+          <a href="./pages/Категории.html">Каталог</a>
+        </div>
         <form>
           <input type="search" id="search" placeholder="Найти товар">
           <label for="search"><img src="./images/components/search.svg" alt="Найти товар"></label>
@@ -126,7 +129,9 @@
 
         <ul class="header--menu header--md__menu">
           <li>
-            <a href="./pages/Категории.html" class="header--menuLink"><span>Каталог</span></a>
+            <div class="header--menuLink">
+              <img src="./images/components/menu.svg" alt="Каталог "> <a href="./pages/Категории.html">Каталог</a>
+            </div>
           </li>
           <li>
             <a href="./pages/Избраное.html">
@@ -174,7 +179,11 @@
       </div>
 
     </nav>
+
   </header>
+
+  <ul class="category--menus"></ul>
+
 
   <article class="hero" onclick="window.location.href='./pages/Заказы.html'">
     <div class="container">
@@ -320,18 +329,27 @@
     </div>
   </footer>
 
-
   <!-- || ap-tab || -->
 
   <script src="https://cdn.jsdelivr.net/gh/abdulazizcreator/ap-tab/main.js"></script>
 
-  <script src="./Js/product-data.js"></script>
-  <script src="./Js/offerSectionData.js"></script>
-  <script src="./Js/articleData.js"></script>
+  <!-- || data || -->
 
-  <script src="./Js/addCardsWidthDom.js"></script>
+  <script src="./Js/Datas/product-data.js"></script>
+  <script src="./Js/Datas/offerSectionData.js"></script>
+  <script src="./Js/Datas/articleData.js"></script>
+  <script src="./Js/Datas/category-data.js"></script>
 
-  <script src="./Js/loading.js"></script>
+  <!-- ||components codes|| -->
+
+  <script src="./Js/components/main.js"></script>
+  <script src="./Js/components/loading.js"></script>
+
+
+  <!-- || add cards for only home page || -->
+
+  <script src="./Js/home/HomeAddCards.js"></script>
+
 
 </body>
 

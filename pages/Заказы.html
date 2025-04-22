@@ -11,6 +11,26 @@
 
 <body>
 
+  <!--|| loading DOM ||-->
+
+  <div class="loadingOwn">
+    <div id="container">
+      <label class="loading-title">Loading ...</label>
+      <span class="loading-circle sp1">
+        <span class="loading-circle sp2">
+          <span class="loading-circle sp3"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+
+
+  <!-- || loading Images || -->
+  <div class="loadingImg">
+    <div class="loader"></div>
+  </div>
+
+
   <!--|| header ||-->
 
   <header class="header">
@@ -33,7 +53,9 @@
             <span class="header--brand_span">Северяночка</span>
           </a>
         </div>
-        <a href="../pages/Категории.html" class="header--menuLink"><span>Каталог</span></a>
+        <div class="header--menuLink">
+          <img src="../images/components/menu.svg" alt="Каталог "> <a href="./pages/Категории.html">Каталог</a>
+        </div>
         <form>
           <input type="search" id="search" placeholder="Найти товар">
           <label for="search"><img src="../images/components/search.svg" alt="Найти товар"></label>
@@ -110,7 +132,9 @@
 
         <ul class="header--menu header--md__menu">
           <li>
-            <a href="../pages/Категории.html" class="header--menuLink"><span>Каталог</span></a>
+            <div class="header--menuLink">
+              <img src="../images/components/menu.svg" alt="Каталог "> <a href="./pages/Категории.html">Каталог</a>
+            </div>
           </li>
           <li>
             <a href="../pages/Избраное.html">
@@ -157,8 +181,12 @@
         </ul>
       </div>
 
+
     </nav>
   </header>
+
+  <ul class="category--menus" id="category__menus"></ul>
+
 
 
   <main>
@@ -199,6 +227,20 @@
       </div>
     </div>
   </footer>
+
+  <script src="../Js/Datas/product-data.js"></script>
+  <script src="../Js/Datas/offerSectionData.js"></script>
+  <script src="../Js/Datas/articleData.js"></script>
+  <script src="../Js/Datas/category-data.js"></script>
+
+  <!-- ||components codes|| -->
+
+  <script src="../Js/components/main.js"></script>
+  <script src="../Js/components/loading.js"></script>
+
+
+  <!-- || add cards for only Заказы page || -->
+
 
 </body>
 

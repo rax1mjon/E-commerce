@@ -1,13 +1,3 @@
-let stockCardList = document.getElementsByClassName("stock--cards");
-let newCardList = document.getElementsByClassName("stock--cards_new");
-let BoughtCardList = document.getElementsByClassName("stock--cards_Bought");
-let offerSection = document.getElementsByClassName("offer--cards");
-let articleList = document.getElementsByClassName("article--cards");
-
-// Акции
-
-let pro = products.filter((el) => el.discount > 0).slice(-4);
-
 function productCard(pro, stock) {
   let el = pro;
 
@@ -173,93 +163,37 @@ function productCard(pro, stock) {
   return stockCardItem;
 }
 
-pro.map((el) => {
-  stockCardList[0].append(productCard(el, "stock"));
+// add category menu hamburger
+
+let categoryListMenu = document.querySelector(".category--menus");
+let hamburger = document.querySelectorAll(`[alt="Каталог "]`);
+
+hamburger.forEach((item) => {
+  item.addEventListener("click", () => {
+    categoryListMenu.classList.toggle("active");
+  });
 });
 
-// Новинки
+console.log(hamburger);
 
-let proNew = products.slice(-4);
+// create category menu
 
-proNew.map((el) => {
-  newCardList[0].append(productCard(el, "notStock"));
-});
+categories.map((el) => {
+  let nameSplit = el.name.split("");
+  let idName = "";
 
-// Покупали раньше
+  for (let el of nameSplit) {
+    if (el === " " || el === ",") break;
+    idName += el;
+  }
 
-let proBought = products.toSorted((a, b) => b.rating - a.rating).slice(0, 4);
-proBought.map((el) => {
-  BoughtCardList[0].append(productCard(el, "notStock"));
-});
+  let categoryListMenuItem = document.createElement("li");
+  categoryListMenuItem.className = "category--menu";
 
-// offer section
+  let categoryListMenuItemLink = document.createElement("a");
+  categoryListMenuItemLink.href = idName;
+  categoryListMenuItemLink.innerText = el.name;
 
-offerSectionData.map((el) => {
-  let offerSectionItem = document.createElement("li");
-
-  let offerSectionItemBox = document.createElement("div");
-
-  let offerSectionItemTitle = document.createElement("h3");
-  offerSectionItemTitle.innerText = el.title;
-
-  let offerSectionItemDescription = document.createElement("p");
-  offerSectionItemDescription.innerText = el.description;
-  offerSectionItemBox.append(offerSectionItemTitle);
-  offerSectionItemBox.append(offerSectionItemDescription);
-
-  let offerSectionItemImage = document.createElement("img");
-  offerSectionItemImage.src = el.image;
-  offerSectionItemImage.alt = "offer";
-
-  offerSectionItem.append(offerSectionItemBox);
-  offerSectionItem.append(offerSectionItemImage);
-
-  offerSection[0].append(offerSectionItem);
-});
-
-// article section
-
-articleData.map((el) => {
-  let articleItem = document.createElement("li");
-  articleItem.className = "stock--card";
-
-  let articleItemBox = document.createElement("div");
-  articleItemBox.className = "stock--card_img";
-
-  let articleItemImage = document.createElement("img");
-  articleItemImage.src = el.image;
-  articleItemImage.alt = "article";
-
-  articleItemBox.append(articleItemImage);
-
-  let articleCardBody = document.createElement("div");
-  articleCardBody.className = "stock--card_body";
-
-  let articleCardBodyDate = document.createElement("span");
-  articleCardBodyDate.className = "stock--card_body__cost";
-  articleCardBodyDate.innerText = el.date;
-
-  articleCardBody.append(articleCardBodyDate);
-
-  let articleCardBodyTitle = document.createElement("h3");
-  articleCardBodyTitle.innerText = el.title;
-
-  articleCardBody.append(articleCardBodyTitle);
-
-  let articleCardBodyText = document.createElement("p");
-  articleCardBodyText.innerText = el.description;
-
-  articleCardBody.append(articleCardBodyText);
-
-  let articleCardBodyButton = document.createElement("a");
-  articleCardBodyButton.href = "./pages/Заказы.html";
-  articleCardBodyButton.innerText = "Подробнее";
-
-  articleCardBody.append(articleCardBodyButton);
-
-  articleItem.append(articleItemBox);
-
-  articleItem.append(articleCardBody);
-
-  articleList[0].append(articleItem);
+  categoryListMenuItem.append(categoryListMenuItemLink);
+  categoryListMenu.append(categoryListMenuItem);
 });

@@ -36,6 +36,10 @@
       bottom: 0;
       left: 0;
       padding: 20px;
+
+      .header--menuLink a {
+        display: none;
+      }
     }
   }
 
@@ -95,18 +99,11 @@
     &Link {
       @include btn.btn(8, 4, null, var.$bg-70);
       @include flex.flex(no, center, no, 8);
+      transition: 0.3s;
       &:hover {
         background-color: var.$bg-f6;
       }
-      &::before {
-        content: "";
-        width: 24px;
-        height: 24px;
-        display: inline-block;
-        background: url("../images/components/menu.svg") no-repeat;
-        background-size: cover;
-      }
-      span {
+      a {
         @include mix.text(var.$bg-ff, 16, 4, 150%, center);
         @media (max-width: 920px) {
           display: none;

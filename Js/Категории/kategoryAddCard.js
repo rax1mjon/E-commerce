@@ -1,5 +1,4 @@
 let categoryList = document.querySelector(".category--list");
-let categoryListMenu = document.getElementById("category__menus");
 
 categories.map((el) => {
   let nameSplit = el.name.split("");
@@ -23,14 +22,4 @@ categories.map((el) => {
 
   categoryListItem.append(categoryListItemImage, categoryListItemTitle);
   categoryList.append(categoryListItem);
-
-  let categoryListMenuItem = document.createElement("li");
-  categoryListMenuItem.className = "category--menu";
-
-  let categoryListMenuItemLink = document.createElement("a");
-  categoryListMenuItemLink.href = idName;
-  categoryListMenuItemLink.innerText = el.name;
-
-  categoryListMenuItem.append(categoryListMenuItemLink);
-  categoryListMenu.append(categoryListMenuItem);
 });
