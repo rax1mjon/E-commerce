@@ -174,8 +174,6 @@ hamburger.forEach((item) => {
   });
 });
 
-console.log(hamburger);
-
 // create category menu
 
 categories.map((el) => {
@@ -191,9 +189,15 @@ categories.map((el) => {
   categoryListMenuItem.className = "category--menu";
 
   let categoryListMenuItemLink = document.createElement("a");
-  categoryListMenuItemLink.href = idName;
+  categoryListMenuItemLink.href = `../../pages/Категории.html#${idName}`;
   categoryListMenuItemLink.innerText = el.name;
 
   categoryListMenuItem.append(categoryListMenuItemLink);
   categoryListMenu.append(categoryListMenuItem);
+});
+
+hamburger.forEach((el) => {
+  el.addEventListener("dblclick", () => {
+    window.location.href = "../pages/Категории.html";
+  });
 });
