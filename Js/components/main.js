@@ -172,11 +172,14 @@ hamburger.forEach((item) => {
   item.addEventListener("click", () => {
     categoryListMenu.classList.toggle("active");
   });
+  item.addEventListener("dblclick", () => {
+    window.location.href = "../pages/Категории.html";
+  });
 });
 
-// create category menu
+// creat id name
 
-categories.map((el) => {
+function CreatIdName(el) {
   let nameSplit = el.name.split("");
   let idName = "";
 
@@ -184,6 +187,13 @@ categories.map((el) => {
     if (el === " " || el === ",") break;
     idName += el;
   }
+  return idName;
+}
+
+// create category menu
+
+categories.map((el) => {
+  let idName = CreatIdName(el);
 
   let categoryListMenuItem = document.createElement("li");
   categoryListMenuItem.className = "category--menu";
@@ -196,8 +206,38 @@ categories.map((el) => {
   categoryListMenu.append(categoryListMenuItem);
 });
 
-hamburger.forEach((el) => {
-  el.addEventListener("dblclick", () => {
-    window.location.href = "../pages/Категории.html";
+let form = document.querySelector(".header form");
+
+let formSearchList = document.createElement("ul");
+
+// function getSearchList() {
+
+// }
+
+let input = document.querySelector('[placeholder="Найти товар"]');
+
+input.addEventListener("input", function (event) {
+  let searchText = event.target.value.toLowerCase().trim();
+  formSearchList.innerHTML = "";
+  categories.map((el) => {
+    let idName = CreatIdName(el);
+    let categoryName = el.name.toLowerCase().trim();
+    if (categoryName.includes(searchText)) {
+      formSearchList.innerHTML += `<li><a href="../../pages/Категории.html#${idName}">${categoryName}</a></li>`;
+    }
   });
+
+  form.append(formSearchList);
+});
+
+input.addEventListener("blur", function () {
+  setTimeout(() => {
+    formSearchList.style.height = "0px";
+    formSearchList.style.padding = "0px 10px";
+  }, 250);
+});
+
+input.addEventListener("focus", function () {
+  formSearchList.style.height = "auto";
+  formSearchList.style.padding = "10px";
 });

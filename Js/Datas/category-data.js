@@ -1,67 +1,67 @@
 const categories = [
   {
     id: 1,
-    name: "Молоко",
+    name: "Milk",
     image: `../images/Категории/Категории-1.png`,
   },
   {
     id: 2,
-    name: "Напитки",
+    name: "Drinks",
     image: `../images/Категории/Категории-2.png`,
   },
   {
     id: 3,
-    name: "Бакалея",
+    name: "Grocery",
     image: `../images/Категории/Категории-3.png`,
   },
   {
     id: 4,
-    name: "Непродовольственные товары",
+    name: " Non-food products",
     image: `../images/Категории/Категории-4.png`,
   },
   {
     id: 5,
-    name: "Хлеб",
+    name: "Bread",
     image: `../images/Категории/Категории-5.png`,
   },
   {
     id: 6,
-    name: "Кондитерские изделия",
+    name: "Confectionery",
     image: `../images/Категории/Категории-6.png`,
   },
   {
     id: 7,
-    name: "Здоровое питание",
+    name: "Healthy eating",
     image: `../images/Категории/Категории-7.png`,
   },
   {
     id: 8,
-    name: "Детское питание",
+    name: "Baby food",
     image: `../images/Категории/Категории-8.png`,
   },
   {
     id: 9,
-    name: "Фрукты и овощи",
+    name: "Fruits and vegetables",
     image: `../images/Категории/Категории-9.png`,
   },
   {
     id: 10,
-    name: "Чай, кофе",
+    name: "Tea, coffee",
     image: `../images/Категории/Категории-10.png`,
   },
   {
     id: 11,
-    name: "Зоотовары",
+    name: "Pet supplies",
     image: `../images/Категории/Категории-11.png`,
   },
   {
     id: 12,
-    name: "Мясо, птица, колбаса",
+    name: "Meat, poultry, sausage",
     image: `../images/Категории/Категории-12.png`,
   },
   {
     id: 13,
-    name: "Замороженные продукты",
+    name: "Frozen food",
     image: `../images/Категории/Категории-13.png`,
   },
 ];

@@ -68,6 +68,33 @@
     position: relative;
     max-width: 374px;
     width: 100%;
+    padding: 10px;
+    @include flex.flex(column, no, no, 10);
+    border: 1px solid var.$bg-70;
+    ul {
+      position: absolute;
+      top: 44px;
+      left: -1px;
+      border: 1px solid var.$bg-70;
+      padding: 10px;
+      overflow: hidden;
+      @include flex.flex(column, no, no, 10);
+      border-top: none;
+      width: calc(100% + 2px);
+      &,
+      & * {
+        transition: 0.5s;
+      }
+      background-color: var.$bg-ff;
+      li {
+        a {
+          @include mix.text(var.$bg-8f, 16, 4, 150%);
+          span {
+            @include mix.text(var.$bg-41, 16, 4, 150%);
+          }
+        }
+      }
+    }
   }
 
   label {
@@ -79,8 +106,7 @@
 
   input {
     outline: none;
-    @include btn.btn(8px 16, 4, 1px solid var.$bg-70, no);
-    height: 40px;
+    @include btn.btn(0, 4, none, no);
     width: 100%;
     @include mix.text(var.$bg-41, 16, 4, 150%);
 
@@ -88,7 +114,9 @@
       display: none;
     }
     &:focus {
-      box-shadow: 3px 3px 5px 1px var.$bg-70;
+      .header--search__form {
+        box-shadow: 3px 3px 5px 1px var.$bg-70;
+      }
     }
     &::placeholder {
       @include mix.text(var.$bg-8f, 16, 4, 150%);
