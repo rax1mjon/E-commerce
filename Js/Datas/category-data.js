@@ -16,7 +16,7 @@ const categories = [
   },
   {
     id: 4,
-    name: " Non-food products",
+    name: "Non-food products",
     image: `../images/Категории/Категории-4.png`,
   },
   {

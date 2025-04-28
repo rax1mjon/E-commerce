@@ -163,6 +163,15 @@ function productCard(pro, stock) {
   return stockCardItem;
 }
 
+function clickSearch(idName = idName) {
+  let allItems = document.querySelector(".searchActive");
+  allItems?.classList.remove("searchActive");
+
+  window.location.href = `../../pages/Категории.html#${idName}`;
+  let active = document.getElementById(`${idName}`);
+  active.classList.add("searchActive");
+}
+
 // add category menu hamburger
 
 let categoryListMenu = document.querySelector(".category--menus");
@@ -225,9 +234,9 @@ form.forEach((formEl) => {
         let categoryName = el.name.toLowerCase().trim();
         if (categoryName.includes(searchText)) {
           formSearchList.innerHTML += `
-        <li onclick="window.location.href = '../../pages/Категории.html#${idName}'">
+        <li onclick="clickSearch('${idName}')">
           <img src="${el.image}" alt="no img?">
-          <a href="../../pages/Категории.html#${idName}">${categoryName}</a>
+          <a href="../../pages/Категории.html#${idName}">${el.name}</a>
         </li>`;
         }
       });
@@ -235,7 +244,7 @@ form.forEach((formEl) => {
       CountSpan.innerText = formSearchList.children.length;
 
       formEl.append(CountSpan);
-      
+
       formEl.append(formSearchList);
     });
 

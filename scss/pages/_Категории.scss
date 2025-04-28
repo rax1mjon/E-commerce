@@ -30,6 +30,12 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .searchActive {
+      &::after {
+        transform: translateY(0);
+      }
+    }
+
     &__item {
       position: relative;
       border-radius: 4px;
