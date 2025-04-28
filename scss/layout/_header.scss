@@ -107,11 +107,14 @@
           @include mix.text(var.$bg-8f, 16, 4, 150%);
           white-space: normal;
           transform: scale(1);
-          span {
-            @include mix.text(var.$bg-41, 16, 4, 150%);
-          }
         }
       }
+    }
+
+    span {
+      @include mix.pos(absolute, -10, -10);
+      @include mix.text(var.$bg-ff, 14, 5, null);
+      @include btn.btn(2px 4, 5, no, var.$bg-f6);
     }
   }
 

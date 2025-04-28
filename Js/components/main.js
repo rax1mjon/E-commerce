@@ -214,6 +214,7 @@ form.forEach((formEl) => {
   let formSearchList = document.createElement("ul");
 
   let input = document.querySelectorAll('[placeholder="Найти товар"]');
+  let CountSpan = document.createElement("span");
 
   input.forEach((inputEl) => {
     inputEl.addEventListener("input", function (event) {
@@ -231,6 +232,10 @@ form.forEach((formEl) => {
         }
       });
 
+      CountSpan.innerText = formSearchList.children.length;
+
+      formEl.append(CountSpan);
+      
       formEl.append(formSearchList);
     });
 
