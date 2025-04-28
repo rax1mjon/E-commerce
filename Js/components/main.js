@@ -206,38 +206,44 @@ categories.map((el) => {
   categoryListMenu.append(categoryListMenuItem);
 });
 
-let form = document.querySelector(".header form");
+// create search menu
 
-let formSearchList = document.createElement("ul");
+let form = document.querySelectorAll(".header form");
 
-// function getSearchList() {
+form.forEach((formEl) => {
+  let formSearchList = document.createElement("ul");
 
-// }
+  let input = document.querySelectorAll('[placeholder="Найти товар"]');
 
-let input = document.querySelector('[placeholder="Найти товар"]');
+  input.forEach((inputEl) => {
+    inputEl.addEventListener("input", function (event) {
+      let searchText = event.target.value.toLowerCase().trim();
+      formSearchList.innerHTML = "";
+      categories.map((el) => {
+        let idName = CreatIdName(el);
+        let categoryName = el.name.toLowerCase().trim();
+        if (categoryName.includes(searchText)) {
+          formSearchList.innerHTML += `
+        <li onclick="window.location.href = '../../pages/Категории.html#${idName}'">
+          <img src="${el.image}" alt="no img?">
+          <a href="../../pages/Категории.html#${idName}">${categoryName}</a>
+        </li>`;
+        }
+      });
 
-input.addEventListener("input", function (event) {
-  let searchText = event.target.value.toLowerCase().trim();
-  formSearchList.innerHTML = "";
-  categories.map((el) => {
-    let idName = CreatIdName(el);
-    let categoryName = el.name.toLowerCase().trim();
-    if (categoryName.includes(searchText)) {
-      formSearchList.innerHTML += `<li><a href="../../pages/Категории.html#${idName}">${categoryName}</a></li>`;
-    }
+      formEl.append(formSearchList);
+    });
+
+    inputEl.addEventListener("blur", function () {
+      setTimeout(() => {
+        formSearchList.style.height = "0px";
+        formSearchList.style.padding = "0px 10px";
+      }, 250);
+    });
+
+    inputEl.addEventListener("focus", function () {
+      formSearchList.style.height = "auto";
+      formSearchList.style.padding = "10px";
+    });
   });
-
-  form.append(formSearchList);
-});
-
-input.addEventListener("blur", function () {
-  setTimeout(() => {
-    formSearchList.style.height = "0px";
-    formSearchList.style.padding = "0px 10px";
-  }, 250);
-});
-
-input.addEventListener("focus", function () {
-  formSearchList.style.height = "auto";
-  formSearchList.style.padding = "10px";
 });

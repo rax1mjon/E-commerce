@@ -73,22 +73,40 @@
     border: 1px solid var.$bg-70;
     ul {
       position: absolute;
-      top: 44px;
+      top: 45px;
       left: -1px;
       border: 1px solid var.$bg-70;
       padding: 10px;
-      overflow: hidden;
+      overflow: auto;
       @include flex.flex(column, no, no, 10);
       border-top: none;
       width: calc(100% + 2px);
+      max-height: calc(100vh - 160px);
       &,
       & * {
         transition: 0.5s;
       }
       background-color: var.$bg-ff;
       li {
+        @include flex.flex(no, center, no, 10);
+        padding: 5px;
+        border-radius: 5px;
+        &:hover {
+          background-color: var.$bg-41;
+          a {
+            color: var.$bg-f3;
+          }
+        }
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          transform: scale(1.02);
+        }
         a {
           @include mix.text(var.$bg-8f, 16, 4, 150%);
+          white-space: normal;
+          transform: scale(1);
           span {
             @include mix.text(var.$bg-41, 16, 4, 150%);
           }
