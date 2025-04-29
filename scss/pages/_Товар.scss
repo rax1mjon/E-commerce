@@ -414,8 +414,16 @@
     @include flex.flex(column, flex-start, no, 16);
     max-width: 688px;
 
+    @media (max-width: 540px) {
+      margin-left: 0;
+    }
+
     &__start {
       @include flex.flex(no, center, no, 16);
+
+    @media (max-width: 390px) {
+      flex-direction: column;
+    }
       h3 {
         @include mix.text(var.$bg-41, 18, 7, 150%);
         // font-size: clamp(18px, 4vw, 24px);

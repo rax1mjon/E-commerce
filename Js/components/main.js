@@ -169,7 +169,7 @@ function clickSearch(idName = idName) {
 
   window.location.href = `../../pages/Категории.html#${idName}`;
   let active = document.getElementById(`${idName}`);
-  active.classList.add("searchActive");
+  active?.classList.add("searchActive");
 }
 
 // add category menu hamburger
