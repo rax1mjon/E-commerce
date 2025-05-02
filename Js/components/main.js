@@ -6,7 +6,7 @@ function productCard(pro, stock) {
 
   //  like click
 
-  let like = ` <span class="like">
+  let like = ` <span class="like" onclick="addToLike(${el.id})">
               <div class="con-like">
                 <input class="like" type="checkbox" title="like">
                 <div class="checkmark">
@@ -40,7 +40,7 @@ function productCard(pro, stock) {
   stockCardImageBox.className = "stock--card_img";
 
   let stockCardImageLink = document.createElement("a");
-  stockCardImageLink.href = "./pages/Товар.html";
+  stockCardImageLink.href = "../pages/Товар.html";
 
   let stockCardImage = document.createElement("img");
   stockCardImage.src = el.images[0];
@@ -154,8 +154,9 @@ function productCard(pro, stock) {
 
   // button
 
-  let stockCardBodyButton = document.createElement("a");
-  stockCardBodyButton.href = "./pages/Корзина.html";
+  let stockCardBodyButton = document.createElement("button");
+  stockCardBodyButton.className = "stock--card__button";
+  // stockCardBodyButton.onclick = addToCart(el.id);
   stockCardBodyButton.innerText = "В корзину";
 
   stockCardBody.append(stockCardBodyButton);
@@ -163,11 +164,30 @@ function productCard(pro, stock) {
   return stockCardItem;
 }
 
+// function addToLike(id) {
+//   let like = document.querySelectorAll(".like input");
+//   let likeCheck = document.querySelectorAll(".like .checkmark");
+
+//   like.forEach((el) => {
+//     if (el.checked) {
+//       el.checked = false;
+//     } else {
+//       el.checked = true;
+//     }
+//   });
+
+//   likeCheck.forEach((el) => {
+//     el.classList.toggle("active");
+//   }); 
+// }
+
+let allProducts = products;
+
 function clickSearch(idName = idName) {
   let allItems = document.querySelector(".searchActive");
   allItems?.classList.remove("searchActive");
 
-  window.location.href = `../../pages/Категории.html#${idName}`;
+  window.location.href = `../../pages/ВсиПродукты.html`;
   let active = document.getElementById(`${idName}`);
   active?.classList.add("searchActive");
 }
@@ -229,15 +249,17 @@ form.forEach((formEl) => {
     inputEl.addEventListener("input", function (event) {
       let searchText = event.target.value.toLowerCase().trim();
       formSearchList.innerHTML = "";
-      categories.map((el) => {
+      allProducts = [];
+      products.map((el) => {
         let idName = CreatIdName(el);
         let categoryName = el.name.toLowerCase().trim();
         if (categoryName.includes(searchText)) {
           formSearchList.innerHTML += `
-        <li onclick="clickSearch('${idName}')">
-          <img src="${el.image}" alt="no img?">
-          <a href="../../pages/Категории.html#${idName}">${el.name}</a>
-        </li>`;
+            <li onclick="clickSearch('${idName}')">
+              <img src="${el.images[0]}" alt="no img?">
+              <a href="../../pages/ВсиПродукты.html">${el.name}</a>
+            </li>`;
+          if (!allProducts.includes(el)) allProducts.push(el);
         }
       });
 
@@ -247,7 +269,6 @@ form.forEach((formEl) => {
 
       formEl.append(formSearchList);
     });
-
     inputEl.addEventListener("blur", function () {
       setTimeout(() => {
         formSearchList.style.height = "0px";

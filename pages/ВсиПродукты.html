@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Заказы</title>
+  <title>Вси Продукты</title>
   <link rel="icon" href="../images/components/logotiveIcon.svg">
   <link rel="stylesheet" href="../css/style.min.css">
 </head>
 
 <body>
+
   <div class="loadingBox"></div>
+
 
   <!--|| header ||-->
 
@@ -20,7 +22,24 @@
 
   <main>
 
-    <section></section>
+    <nav aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="../index.html">Главная</a></li>
+          <li>Вси продукты</li>
+        </ol>
+      </div>
+    </nav>
+
+    <section class="allProduct">
+      <div class="container allProduct--wrapper">
+
+        <h2>Вси продукты</h2>
+        <div class="stock--cards allProduct--list">
+
+        </div>
+      </div>
+    </section>
 
   </main>
 
@@ -28,7 +47,6 @@
   <!--|| footer ||-->
 
   <footer class="footer"></footer>
-
 
   <script src="../Js/Datas/product-data.js"></script>
   <script src="../Js/Datas/offerSectionData.js"></script>
@@ -42,8 +60,9 @@
   <script src="../Js/components/loading.js"></script>
 
 
-  <!-- || add cards for only Заказы page || -->
+  <!-- || add cards for only categories page || -->
 
+  <script type="module" src="../Js/ВсиПродукты/creatProductCard.js"></script>
 
 </body>
 

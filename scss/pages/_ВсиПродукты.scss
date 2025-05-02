@@ -1,0 +1,33 @@
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as var;
+@use "../components/buttons" as btn;
+@use "../layout/flex" as flex;
+@use "../themes/dark--mode";
+
+.allProduct {
+  &--wrapper {
+    @include flex.flex(column, no, no, 50);
+  }
+  &--list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: visible;
+    transform: translateY(0);
+
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(3, 1fr);
+      
+    }
+
+    @media (max-width: 780px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 450px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .stock--card {
+      width: auto;
+    }
+  }
+}

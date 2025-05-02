@@ -93,7 +93,7 @@
       gap: 40px;
 
       &::-webkit-scrollbar {
-        display: none; 
+        display: none;
       }
 
       @media (max-width: 1200px) {
@@ -241,6 +241,7 @@
       overflow: hidden;
       img {
         height: 100%;
+        width: 100%;
         object-fit: cover;
         transition: 0.3s;
       }
@@ -299,10 +300,9 @@
         }
       }
     }
-
-    a[href="./pages/Корзина.html"] {
+    button {
       text-decoration: none;
-      @include btn.btn(8, 4, 1px solid var.$bg-70, null);
+      @include btn.btn(8, 4, 1px solid var.$bg-70, transparent);
       @include mix.text(var.$bg-70, 16, 4, 150%, center);
       &:hover {
         background-color: var.$bg-f6;
