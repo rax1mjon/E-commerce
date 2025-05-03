@@ -44,9 +44,9 @@ function CreateCartCard(el) {
       } , 'add')">+</button></div>
         <div class="cart--card__bodyAllPrice"><span>${(
           discountPrice * product.quantity
-        ).toFixed(2)} ₽</span><span><dproduct>${(
+        ).toFixed(2)} ₽</span><span><del>${(
         product.price * product.quantity
-      ).toFixed(2)} ₽</dproduct></span></div>
+      ).toFixed(2)} ₽</del></span></div>
       </div>
     </li>
     `
@@ -76,14 +76,26 @@ function CreateCartCard(el) {
       } , 'add')">+</button></div>
         <div class="cart--card__bodyAllPrice"><span>${(
           discountPrice * product.quantity
-        ).toFixed(2)} ₽</span><span><dproduct>${(
+        ).toFixed(2)} ₽</span><span><del>${(
         product.price * product.quantity
-      ).toFixed(2)} ₽</dproduct></span></div>
+      ).toFixed(2)} ₽</del></span></div>
       </div>
   </li>`;
 }
 
-let cartCount = document.querySelector(".cart--wrapper h2 span");
+function setCartCount() {
+  let cartCountTitle = document.querySelector(".cart--wrapper h2 span");
+  let AllCartsCountInTotalBox = document.querySelector(
+    ".cart--totalBox__eachCosts div div span"
+  );
+  let cartCount = document.querySelectorAll(".header--cart__count");
+  cartCount.forEach((count) => (count.textContent = CartProducts.length));
+
+  cartCountTitle.innerText = CartProducts.length;
+  AllCartsCountInTotalBox.innerText = CartProducts.length;
+}
+
+setCartCount();
 
 function addQuantityValue(id, type) {
   let product = CartProducts.find((el) => el.id === id);
@@ -91,19 +103,69 @@ function addQuantityValue(id, type) {
     product.quantity++;
   } else if (type === "delate") {
     product.quantity--;
-    if (product.quantity <= 0) {
+    if (product.quantity == 0) {
       CartProducts = CartProducts.filter((el) => el.id != id);
     }
   }
-  cartCount.innerText = CartProducts.length;
+
+  setAllTotalPrice();
+  setCartCount();
   localStorage.setItem("CartProducts", JSON.stringify(CartProducts));
   setCartProducts();
 }
 
-let delateCardToggle = document.querySelector(
+// ******************* Delete products from cart  *********************
+
+let deleteCardToggle = document.querySelector(
   ".cart--listBox__head div :first-child"
 );
 
-delateCardToggle.addEventListener("click", () => {
-  
-})
+deleteCardToggle.addEventListener("click", () => {
+  CartProducts.shift();
+  setCartCount();
+  setAllTotalPrice();
+  localStorage.setItem("CartProducts", JSON.stringify(CartProducts));
+  setCartProducts();
+});
+
+// ******************* ^ Delete products from cart ^  *********************
+
+function setAllTotalPrice() {
+  let originalTotalPrice = document.querySelectorAll(
+    ".cart--totalBox__eachCosts div span "
+  )[1];
+
+  let discountPrice = 0;
+  let originalPrice = 0;
+  CartProducts.map((el) => {
+    let product = el;
+
+    originalPrice += product.price * product.quantity;
+
+    let discountedPrice =
+      product.price - product.price * (product.discount / 100);
+    let totalDiscountedPrice = discountedPrice * product.quantity;
+
+    discountPrice += totalDiscountedPrice;
+  });
+  //  ******************* Set original total price  *********************
+
+  originalTotalPrice.innerText = originalPrice + " ₽";
+
+  //  ******************* Set discount total price  *********************
+  let discountTotalPrice = document.querySelectorAll(
+    ".cart--totalBox__eachCosts div span "
+  )[3];
+
+  discountTotalPrice.innerText =
+    "- " + (originalPrice - discountPrice).toFixed(2) + " ₽";
+
+  //  ******************* Set total price  *********************
+
+  let totalPrice = document.querySelector(
+    ".cart--totalBox__allCosts div span:nth-child(2)"
+  );
+
+  totalPrice.innerText = discountPrice.toFixed(2) + " ₽";
+}
+setAllTotalPrice();

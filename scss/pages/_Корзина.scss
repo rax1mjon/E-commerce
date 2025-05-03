@@ -56,7 +56,7 @@
         &:hover {
           box-shadow: inset 200px 40px 5px 50px #70c05b;
           transform: scale(1) skew(10deg, 0deg);
-          color: var.$bg-ff
+          color: var.$bg-ff;
         }
       }
     }
@@ -192,10 +192,15 @@
       border-top: 2px solid var.$bg-f3;
       div {
         @include flex.flex(no, center, space-between, 8);
-        span:nth-child(1) {
+
+        div {
           @include mix.text(var.$bg-8f, 16, 4, 150%);
+          span {
+            @include mix.text(var.$bg-8f, 16, 4, 150%);
+          }
         }
-        span:nth-child(2) {
+
+        span {
           @include mix.text(var.$bg-41, 16, 4, 150%);
         }
 
