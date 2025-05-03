@@ -171,6 +171,7 @@
       }
 
       &AllPrice {
+        width: 100px;
         padding: 8px;
         span {
           @include mix.text(var.$bg-41, 18, 7, 150%, end);

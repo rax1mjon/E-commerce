@@ -1,4 +1,3 @@
-
 let allProductList = document.querySelector(".allProduct--list");
 function setAllProducts(allProducts = products) {
   allProductList.innerHTML = "";
@@ -7,9 +6,10 @@ function setAllProducts(allProducts = products) {
     allProductList.append(productCardElement);
   });
 }
+
 setAllProducts();
 
-form.forEach((formEl) => {
+form.forEach(() => {
   let input = document.querySelectorAll('[placeholder="Найти товар"]');
 
   input.forEach((inputEl) => {

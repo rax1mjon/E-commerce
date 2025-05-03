@@ -189,7 +189,7 @@
         position: absolute;
         animation: kfr-celebrate 0.5s;
         animation-fill-mode: forwards;
-        display: none;
+        display: none ;
       }
 
       .con-like .poly {
@@ -197,11 +197,13 @@
         fill: var(--red);
       }
 
-      .con-like .like:checked ~ .checkmark .filled {
+      .con-like .like:checked ~ .checkmark .filled,
+      &.active .checkmark .filled {
         display: block;
       }
 
-      .con-like .like:checked ~ .checkmark .celebrate {
+      .con-like .like:checked ~ .checkmark .celebrate,
+      &.active .checkmark .celebrate {
         display: block;
       }
 
@@ -287,8 +289,8 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: normal;
         @include mix.text(var.$bg-41, 16, 4, 150%);
+        white-space: normal;
       }
       &__starts {
         img {
@@ -304,6 +306,12 @@
       text-decoration: none;
       @include btn.btn(8, 4, 1px solid var.$bg-70, transparent);
       @include mix.text(var.$bg-70, 16, 4, 150%, center);
+
+      &.active {
+        background-color: var.$bg-70;
+        color: var.$bg-ff;
+      }
+    
       &:hover {
         background-color: var.$bg-f6;
         border-color: var.$bg-f6;

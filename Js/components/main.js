@@ -6,31 +6,36 @@ function productCard(pro, stock) {
 
   //  like click
 
-  let like = ` <span class="like" onclick="addToLike(${el.id})">
-              <div class="con-like">
-                <input class="like" type="checkbox" title="like">
-                <div class="checkmark">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
-                    <path
-                      d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
-                    </path>
-                  </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="filled" viewBox="0 0 24 24">
-                    <path
-                      d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
-                    </path>
-                  </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="celebrate">
-                    <polygon class="poly" points="10,10 20,20"></polygon>
-                    <polygon class="poly" points="10,50 20,50"></polygon>
-                    <polygon class="poly" points="20,80 30,70"></polygon>
-                    <polygon class="poly" points="90,10 80,20"></polygon>
-                    <polygon class="poly" points="90,50 80,50"></polygon>
-                    <polygon class="poly" points="80,80 70,70"></polygon>
-                  </svg>
-                </div>
-              </div>
-            </span>`;
+  let check = likeProducts.find((el) => el.id == pro.id);
+
+  let like = ` 
+  <span class="like ${check ? "active" : ""}" onclick="addToLike(${el.id})">
+    <div class="con-like">
+      <input class="like" type="checkbox" title="like">
+      <div class="checkmark">
+        <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
+          <path
+            d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+          </path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="filled" viewBox="0 0 24 24">
+          <path
+            d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+          </path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="celebrate">
+          <polygon class="poly" points="10,10 20,20"></polygon>
+          <polygon class="poly" points="10,50 20,50"></polygon>
+          <polygon class="poly" points="20,80 30,70"></polygon>
+          <polygon class="poly" points="90,10 80,20"></polygon>
+          <polygon class="poly" points="90,50 80,50"></polygon>
+          <polygon class="poly" points="80,80 70,70"></polygon>
+        </svg>
+      </div>
+    </div>
+  </span>
+  `;
+
   let likeElement = document.createElement("div");
   likeElement.innerHTML = like;
 
@@ -154,9 +159,13 @@ function productCard(pro, stock) {
 
   // button
 
+  let checkCart = CartProducts.find((el) => el.id == pro.id);
+
   let stockCardBodyButton = document.createElement("button");
-  stockCardBodyButton.className = "stock--card__button";
-  // stockCardBodyButton.onclick = addToCart(el.id);
+  stockCardBodyButton.className = `stock--card__button ${
+    checkCart ? "active" : ""
+  }`;
+  stockCardBodyButton.onclick = () => addToCart(el.id);
   stockCardBodyButton.innerText = "В корзину";
 
   stockCardBody.append(stockCardBodyButton);
@@ -164,22 +173,96 @@ function productCard(pro, stock) {
   return stockCardItem;
 }
 
-// function addToLike(id) {
-//   let like = document.querySelectorAll(".like input");
-//   let likeCheck = document.querySelectorAll(".like .checkmark");
+function addHomeCards() {
+  let newCardList = document?.getElementsByClassName("stock--cards_new");
+  let BoughtCardList = document?.getElementsByClassName("stock--cards_Bought");
+  let stockCardList = document?.getElementsByClassName("stock--cards");
 
-//   like.forEach((el) => {
-//     if (el.checked) {
-//       el.checked = false;
-//     } else {
-//       el.checked = true;
-//     }
-//   });
+  if (newCardList[0] && BoughtCardList[0] && stockCardList[0]) {
+    // Акции
 
-//   likeCheck.forEach((el) => {
-//     el.classList.toggle("active");
-//   }); 
-// }
+    let pro = products.filter((el) => el.discount > 0).slice(-4);
+
+    stockCardList[0].innerHTML = "";
+
+    pro.map((el) => {
+      stockCardList[0]?.append(productCard(el, "stock"));
+    });
+
+    // Новинки
+
+    let proNew = products.slice(-4);
+
+    newCardList[0].innerHTML = "";
+
+    proNew.map((el) => {
+      newCardList[0]?.append(productCard(el, "notStock"));
+    });
+
+    // Покупали раньше
+
+    let proBought = products
+      .toSorted((a, b) => b.rating - a.rating)
+      .slice(0, 4);
+
+    BoughtCardList[0].innerHTML = "";
+
+    proBought.map((el) => {
+      BoughtCardList[0]?.append(productCard(el, "notStock"));
+    });
+  }
+}
+
+let likeProducts = JSON.parse(localStorage.getItem("likeProducts")) || [];
+
+function addToLike(id) {
+  let likeCount = document.querySelectorAll(".header--like__count");
+
+  likeCount.forEach((count) => (count.textContent = likeProducts.length));
+
+  products.map((el) => {
+    if (el.id === id) {
+      let likeProduct = el;
+      let likeProductId = likeProducts.find((el) => el.id === likeProduct.id);
+      if (!likeProductId) {
+        likeProducts.push(likeProduct);
+        likeCount.forEach((count) => (count.textContent = likeProducts.length));
+      } else {
+        likeProducts = likeProducts.filter((el) => el.id !== likeProduct.id);
+        likeCount.forEach((count) => (count.textContent = likeProducts.length));
+      }
+    }
+    localStorage.setItem("likeProducts", JSON.stringify(likeProducts));
+  });
+}
+addToLike();
+
+let CartProducts = JSON.parse(localStorage.getItem("CartProducts")) || [];
+
+function addToCart(id) {
+  let cartCount = document.querySelectorAll(".header--cart__count");
+  cartCount.forEach((count) => (count.textContent = CartProducts.length));
+
+  products.map((product) => {
+    if (product.id === id) {
+      let check = CartProducts.find((el) => el.id === product.id);
+
+      if (!check) {
+        product.quantity = 1;
+        CartProducts.push(product);
+        cartCount.forEach((count) => (count.textContent = CartProducts.length));
+      } else {
+        check.quantity++;
+        cartCount.forEach((count) => (count.textContent = CartProducts.length));
+      }
+    }
+
+    localStorage.setItem("CartProducts", JSON.stringify(CartProducts));
+  });
+  addHomeCards();
+}
+
+addToCart();
 
 let allProducts = products;
 

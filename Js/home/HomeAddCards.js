@@ -1,32 +1,43 @@
-let stockCardList = document.getElementsByClassName("stock--cards");
-let newCardList = document.getElementsByClassName("stock--cards_new");
-let BoughtCardList = document.getElementsByClassName("stock--cards_Bought");
 let offerSection = document.getElementsByClassName("offer--cards");
 let articleList = document.getElementsByClassName("article--cards");
 
-// Акции
+function addHomeCards() {
+  let newCardList = document?.getElementsByClassName("stock--cards_new");
+  let BoughtCardList = document?.getElementsByClassName("stock--cards_Bought");
+  let stockCardList = document?.getElementsByClassName("stock--cards");
 
-let pro = products.filter((el) => el.discount > 0).slice(-4);
+  // Акции
 
+  let pro = products.filter((el) => el.discount > 0).slice(-4);
 
-pro.map((el) => {
-  stockCardList[0].append(productCard(el, "stock"));
-});
+  stockCardList[0].innerHTML = "";
 
-// Новинки
+  pro.map((el) => {
+    stockCardList[0]?.append(productCard(el, "stock"));
+  });
 
-let proNew = products.slice(-4);
+  // Новинки
 
-proNew.map((el) => {
-  newCardList[0].append(productCard(el, "notStock"));
-});
+  let proNew = products.slice(-4);
 
-// Покупали раньше
+  newCardList[0].innerHTML = "";
 
-let proBought = products.toSorted((a, b) => b.rating - a.rating).slice(0, 4);
-proBought.map((el) => {
-  BoughtCardList[0].append(productCard(el, "notStock"));
-});
+  proNew.map((el) => {
+    newCardList[0]?.append(productCard(el, "notStock"));
+  });
+
+  // Покупали раньше
+
+  let proBought = products.toSorted((a, b) => b.rating - a.rating).slice(0, 4);
+
+  BoughtCardList[0].innerHTML = "";
+
+  proBought.map((el) => {
+    BoughtCardList[0]?.append(productCard(el, "notStock"));
+  });
+}
+
+addHomeCards();
 
 // offer section
 
