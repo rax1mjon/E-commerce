@@ -1,10 +1,12 @@
-let list = document.querySelector(".cart--list");
 function setCartProducts(data = CartProducts) {
+  let list = document.querySelector(".cart--list");
   list.innerHTML = "";
-  data.map((el) => {
+  let html = "";
+  data.forEach((el) => {
     let productCardElement = CreateCartCard(el);
-    list.innerHTML += productCardElement;
+    html += productCardElement;
   });
+  list.innerHTML = html;
 }
 setCartProducts();
 
@@ -101,9 +103,11 @@ function addQuantityValue(id, type) {
   let product = CartProducts.find((el) => el.id === id);
   if (type === "add") {
     product.quantity++;
-  } else if (type === "delate") {
+  } else if (type === "delate" && product.quantity != 1) {
     product.quantity--;
-    if (product.quantity == 0) {
+  } else {
+    let isDelete = confirm("Do you want to fly?");
+    if (isDelete) {
       CartProducts = CartProducts.filter((el) => el.id != id);
     }
   }
@@ -121,11 +125,13 @@ let deleteCardToggle = document.querySelector(
 );
 
 deleteCardToggle.addEventListener("click", () => {
-  CartProducts.shift();
-  setCartCount();
-  setAllTotalPrice();
-  localStorage.setItem("CartProducts", JSON.stringify(CartProducts));
-  setCartProducts();
+  if (confirm("Do you want to fly?")) {
+    CartProducts.shift();
+    setCartCount();
+    setAllTotalPrice();
+    localStorage.setItem("CartProducts", JSON.stringify(CartProducts));
+    setCartProducts();
+  }
 });
 
 // ******************* ^ Delete products from cart ^  *********************
@@ -137,7 +143,7 @@ function setAllTotalPrice() {
 
   let discountPrice = 0;
   let originalPrice = 0;
-  CartProducts.map((el) => {
+  CartProducts.forEach((el) => {
     let product = el;
 
     originalPrice += product.price * product.quantity;

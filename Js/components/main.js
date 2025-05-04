@@ -213,6 +213,17 @@ function addHomeCards() {
   }
 }
 
+function setAllProducts(allProducts = products) {
+  let allProductList = document?.querySelector(".allProduct--list");
+  if (allProductList) {
+    allProductList.innerHTML = "";
+    allProducts?.forEach((el) => {
+      let productCardElement = productCard(el, "stock");
+      allProductList?.append(productCardElement);
+    });
+  }
+}
+
 let likeProducts = JSON.parse(localStorage.getItem("likeProducts")) || [];
 
 function addToLike(id) {
@@ -226,14 +237,13 @@ function addToLike(id) {
       let likeProductId = likeProducts.find((el) => el.id === likeProduct.id);
       if (!likeProductId) {
         likeProducts.push(likeProduct);
-        likeCount.forEach((count) => (count.textContent = likeProducts.length));
       } else {
         likeProducts = likeProducts.filter((el) => el.id !== likeProduct.id);
-        likeCount.forEach((count) => (count.textContent = likeProducts.length));
       }
     }
-    localStorage.setItem("likeProducts", JSON.stringify(likeProducts));
   });
+  likeCount.forEach((count) => (count.textContent = likeProducts.length));
+  localStorage.setItem("likeProducts", JSON.stringify(likeProducts));
 }
 addToLike();
 
@@ -242,23 +252,21 @@ let CartProducts = JSON.parse(localStorage.getItem("CartProducts")) || [];
 function addToCart(id) {
   let cartCount = document.querySelectorAll(".header--cart__count");
   cartCount.forEach((count) => (count.textContent = CartProducts.length));
-
-  products.map((product) => {
+  products.forEach((product) => {
     if (product.id === id) {
       let check = CartProducts.find((el) => el.id === product.id);
 
       if (!check) {
         product.quantity = 1;
         CartProducts.push(product);
-        cartCount.forEach((count) => (count.textContent = CartProducts.length));
       } else {
         check.quantity++;
-        cartCount.forEach((count) => (count.textContent = CartProducts.length));
       }
     }
-
-    localStorage.setItem("CartProducts", JSON.stringify(CartProducts));
   });
+  cartCount.forEach((count) => (count.textContent = CartProducts.length));
+  setAllProducts();
+  localStorage.setItem("CartProducts", JSON.stringify(CartProducts));
   addHomeCards();
 }
 

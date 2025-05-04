@@ -1,12 +1,3 @@
-let allProductList = document.querySelector(".allProduct--list");
-function setAllProducts(allProducts = products) {
-  allProductList.innerHTML = "";
-  allProducts.map((el) => {
-    let productCardElement = productCard(el, "stock");
-    allProductList.append(productCardElement);
-  });
-}
-
 setAllProducts();
 
 form.forEach(() => {
@@ -27,7 +18,7 @@ form.forEach(() => {
             allProductList.append(productCardElement);
           });
         }
-      });
+0      });
     });
   });
 });
