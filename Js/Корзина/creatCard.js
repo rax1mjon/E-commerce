@@ -175,3 +175,9 @@ function setAllTotalPrice() {
   totalPrice.innerText = discountPrice.toFixed(2) + " ₽";
 }
 setAllTotalPrice();
+
+let cartButton = document.querySelector(".cart-btn");
+
+cartButton.addEventListener("click", () => {
+  alert("sizning buyurtmangiz qabul qilindi");
+});
