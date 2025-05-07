@@ -91,6 +91,7 @@
       overflow-x: auto;
       scrollbar-width: none;
       gap: 40px;
+      justify-content: space-between;
 
       &::-webkit-scrollbar {
         display: none;
@@ -105,7 +106,7 @@
     box-shadow: 1px 2px 4px 0px #0000001a;
     transition: 0.5s;
     display: block;
-    width: (272 * 2) + px;
+    width: 300px;
 
     &:hover {
       box-shadow: 4px 8px 16px 0px #ff663333;
@@ -189,7 +190,7 @@
         position: absolute;
         animation: kfr-celebrate 0.5s;
         animation-fill-mode: forwards;
-        display: none ;
+        display: none;
       }
 
       .con-like .poly {
@@ -243,7 +244,7 @@
       overflow: hidden;
       img {
         height: 100%;
-        width: 100%;
+        width: 272px;
         object-fit: cover;
         transition: 0.3s;
       }
@@ -311,7 +312,7 @@
         background-color: var.$bg-70;
         color: var.$bg-ff;
       }
-    
+
       &:hover {
         background-color: var.$bg-f6;
         border-color: var.$bg-f6;

@@ -16,7 +16,6 @@
 
     @media (max-width: 1000px) {
       grid-template-columns: repeat(3, 1fr);
-      
     }
 
     @media (max-width: 780px) {
@@ -26,8 +25,10 @@
     @media (max-width: 450px) {
       grid-template-columns: repeat(1, 1fr);
     }
-    .stock--card {
-      width: auto;
+
+    .stock--card,
+    .stock--card_img img {
+      width: 100%;
     }
   }
 }

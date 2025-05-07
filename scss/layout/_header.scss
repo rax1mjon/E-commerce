@@ -13,9 +13,10 @@
   left: 0;
   width: 100%;
   background-color: var.$bg-ff;
-  padding: 1rem 0;
+  padding: 2rem 0;
   box-shadow: 2px 4px 8px 0px var.$bg-shadow;
   z-index: 11111112;
+  transition: 0.5s;
 
   .container {
     padding: 0 20px;
@@ -200,6 +201,7 @@
     }
     &__me {
       @include flex.flex(no, center, no, 10);
+      cursor: pointer;
       span {
         padding-right: 66px;
         @include mix.text(var.$bg-23, 16, 4, 150%);
@@ -214,7 +216,7 @@
 .category {
   &--menus {
     position: fixed;
-    top: 72px;
+    top: 80px;
     left: 0;
     width: 100%;
     padding: 40px 20px;

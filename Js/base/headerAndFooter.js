@@ -13,9 +13,42 @@ let loading = `
   </div>
 
   <!-- || loading Images || -->
-  <div class="loadingImg">
+  <div class="loadingImg" id="top>
     <div class="loader"></div>
   </div>
+
+  <!-- || BackTop || -->
+
+    <a href="#top"  class="button backTop">
+      <svg viewBox="0 0 384 512" class="svgIcon">
+        <path
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+        ></path>
+      </svg>
+    </a>
+
+  <!-- || Modal || -->
+
+    <div class="modal">
+    <div class="modal--container">
+      <div class="modal--delate">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M18.3536 5.64645C18.5488 5.84171 18.5488 6.15829 18.3536 6.35355L6.35355 18.3536C6.15829 18.5488 5.84171 18.5488 5.64645 18.3536C5.45118 18.1583 5.45118 17.8417 5.64645 17.6464L17.6464 5.64645C17.8417 5.45118 18.1583 5.45118 18.3536 5.64645Z"
+            fill="#414141" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M5.64645 5.64645C5.84171 5.45118 6.15829 5.45118 6.35355 5.64645L18.3536 17.6464C18.5488 17.8417 18.5488 18.1583 18.3536 18.3536C18.1583 18.5488 17.8417 18.5488 17.6464 18.3536L5.64645 6.35355C5.45118 6.15829 5.45118 5.84171 5.64645 5.64645Z"
+            fill="#414141" />
+        </svg>
+      </div>
+      <h3>Вход</h3>
+      <form><label for="telModal">Телефон</label><input type="tel" id="telModal" value="+998 "><button>Вход</button>
+      </form>
+      <div class="modal--bottom"><a href="../pages/Контакты.html">Регистрация</a><a>Забыли пароль?</a></div>
+    </div>
+  </div>
+
+  
 `;
 
 let nav = `
