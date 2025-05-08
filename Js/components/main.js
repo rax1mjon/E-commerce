@@ -1,5 +1,6 @@
 let CartProducts = JSON.parse(localStorage.getItem("CartProducts")) || [];
 let dairyData = JSON.parse(localStorage.getItem("dairyProduct")) || [];
+let SearchData = JSON.parse(localStorage.getItem("searchData")) || products;
 
 let AllBtn = document?.querySelectorAll("button");
 
@@ -383,17 +384,6 @@ function productCard(pro, stock) {
   return stockCardItem;
 }
 
-function setAllProducts(allProducts = products) {
-  let allProductList = document?.querySelector(".allProduct--list");
-  if (allProductList) {
-    allProductList.innerHTML = "";
-    allProducts?.forEach((el) => {
-      let productCardElement = productCard(el, "stock");
-      allProductList?.append(productCardElement);
-    });
-  }
-}
-
 let likeProducts = JSON.parse(localStorage.getItem("likeProducts")) || [];
 
 function addToLike(id) {
@@ -594,3 +584,32 @@ window.addEventListener("click", (event) => {
     modal.classList.remove("modalShow");
   }
 });
+
+// ************* pagination *************
+
+function setAllProducts(allProducts = products) {
+  let allProductList = document?.querySelector(".allProduct--list");
+  if (allProductList) {
+    allProductList.innerHTML = "";
+    allProducts.forEach((el) => {
+      let productCardElement = productCard(el, "stock");
+      allProductList.append(productCardElement);
+    });
+
+    let pageCountList = document.querySelector(".pagination--CountList");
+
+    pageCount = Math.ceil(SearchData.length / 8);
+
+    pageCountList.innerHTML = "";
+
+    for (let i = 1; i <= pageCount; i++) {
+      pageCountList.innerHTML += `<li>${i}</li>`;
+    }
+
+    if (pageCount == 1) {
+      document.querySelectorAll(".pagination--list").forEach((el) => {
+        el.style.display = "none";
+      });
+    }
+  }
+}

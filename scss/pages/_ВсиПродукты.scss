@@ -32,3 +32,52 @@
     }
   }
 }
+
+.pagination {
+  @include flex.flex(no, center, space-between, 16);
+
+  margin: 0 auto;
+
+  &--list {
+    @include flex.flex(no, center, space-between, 16);
+
+    li {
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.1s;
+      max-width: 40px;
+      max-height: 40px;
+
+      .clickPage {
+        background-color: var.$bg-f6;
+        color: var.$bg-70;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      &:hover {
+        background-color: var.$bg-f6;
+        color: var.$bg-ff;
+
+        img {
+          filter: invert(100%) brightness(1000%);
+        }
+      }
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  &--lastList {
+    li {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
