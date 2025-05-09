@@ -1,6 +1,8 @@
 let CartProducts = JSON.parse(localStorage.getItem("CartProducts")) || [];
 let dairyData = JSON.parse(localStorage.getItem("dairyProduct")) || [];
 let SearchData = JSON.parse(localStorage.getItem("searchData")) || products;
+let activePage = 1;
+let pageCount;
 
 let AllBtn = document?.querySelectorAll("button");
 
@@ -587,29 +589,63 @@ window.addEventListener("click", (event) => {
 
 // ************* pagination *************
 
-function setAllProducts(allProducts = products) {
+function setAllProducts(allProducts = SearchData) {
   let allProductList = document?.querySelector(".allProduct--list");
+
   if (allProductList) {
+    let firstPage = (activePage - 1) * 8;
+    let lastPage = activePage * 8;
+
+    let ActiveData = allProducts.slice(firstPage, lastPage);
+
     allProductList.innerHTML = "";
-    allProducts.forEach((el) => {
+    ActiveData.forEach((el) => {
       let productCardElement = productCard(el, "stock");
       allProductList.append(productCardElement);
     });
 
     let pageCountList = document.querySelector(".pagination--CountList");
 
-    pageCount = Math.ceil(SearchData.length / 8);
+    pageCount = Math.ceil(allProducts.length / 8);
 
     pageCountList.innerHTML = "";
 
     for (let i = 1; i <= pageCount; i++) {
-      pageCountList.innerHTML += `<li>${i}</li>`;
+      pageCountList.innerHTML += `<li onclick="changeActivePage(${i})" class="${
+        activePage == i && "clickPage"
+      }">${i}</li>`;
     }
 
-    if (pageCount == 1) {
-      document.querySelectorAll(".pagination--list").forEach((el) => {
+    document.querySelectorAll(".pagination--list").forEach((el) => {
+      if (pageCount <= 1) {
         el.style.display = "none";
-      });
-    }
+        allProductList.style.display = "grid";
+
+        if (pageCount == 0) {
+          allProductList.style.display = "block";
+          allProductList.innerHTML = `<h3 class="noProduct">No Product !!!</h3>`;
+        }
+      } else {
+        el.style.display = "flex";
+        allProductList.style.display = "grid";
+      }
+    });
+
+    let FirstLast = document.querySelectorAll(".FirstLast");
+
+    FirstLast[0].addEventListener("click", () => {
+      activePage = 1;
+      setAllProducts();
+    });
+
+    FirstLast[3].addEventListener("click", () => {
+      activePage = pageCount;
+      setAllProducts();
+    });
   }
+}
+
+function changeActivePage(i) {
+  activePage = i;
+  setAllProducts();
 }

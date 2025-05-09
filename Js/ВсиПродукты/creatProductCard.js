@@ -22,7 +22,7 @@ form.forEach(() => {
         }
       });
 
-      setAllProducts();
+      setAllProducts(SearchData);
       localStorage.setItem("searchData", JSON.stringify(SearchData));
     });
   });
