@@ -605,7 +605,6 @@ function setAllProducts(allProducts = SearchData) {
     });
 
     let pageCountList = document.querySelector(".pagination--CountList");
-
     pageCount = Math.ceil(allProducts.length / 8);
 
     pageCountList.innerHTML = "";
@@ -629,18 +628,11 @@ function setAllProducts(allProducts = SearchData) {
         el.style.display = "flex";
         allProductList.style.display = "grid";
       }
-    });
 
-    let FirstLast = document.querySelectorAll(".FirstLast");
+      let FirstLast = document.querySelectorAll(".FirstLast");
 
-    FirstLast[0].addEventListener("click", () => {
-      activePage = 1;
-      setAllProducts();
-    });
-
-    FirstLast[3].addEventListener("click", () => {
-      activePage = pageCount;
-      setAllProducts();
+      FirstLast[1].style.opacity = "1";
+      FirstLast[2].style.opacity = "1";
     });
   }
 }

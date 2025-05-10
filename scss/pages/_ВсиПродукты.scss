@@ -53,6 +53,14 @@
 
   margin: 0 auto;
 
+  @media (max-width: 450px) {
+    &--firstList,
+    &--lastList {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+    }
+  }
   &--list {
     @include flex.flex(no, center, space-between, 16);
 

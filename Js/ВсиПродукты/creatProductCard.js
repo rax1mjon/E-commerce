@@ -27,3 +27,40 @@ form.forEach(() => {
     });
   });
 });
+
+let FirstLast = document.querySelectorAll(".FirstLast");
+
+FirstLast[1].style.opacity = "1";
+FirstLast[2].style.opacity = "1";
+
+FirstLast[0].addEventListener("click", () => {
+  activePage = 1;
+  setAllProducts();
+});
+
+FirstLast[1].addEventListener("click", function () {
+  if (activePage != 1) {
+    activePage = activePage - 1;
+    console.log(activePage);
+    this.style.opacity = "1";
+    setAllProducts();
+  } else {
+    this.style.opacity = "0";
+  }
+});
+
+FirstLast[2].addEventListener("click", function () {
+  if (activePage != pageCount) {
+    activePage = activePage + 1;
+    console.log(activePage);
+    this.style.opacity = "1";
+    setAllProducts();
+  } else {
+    this.style.opacity = "0";
+  }
+});
+
+FirstLast[3].addEventListener("click", () => {
+  activePage = pageCount;
+  setAllProducts();
+});
